@@ -6,6 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::view('/blank', 'blank')->name('blank');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
