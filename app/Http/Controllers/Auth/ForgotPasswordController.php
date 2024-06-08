@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Str;  // Correct namespace for Str
+use Illuminate\Support\Str;  
 use App\Mail\ForgotPasswordMail;
-use Illuminate\Support\Facades\Mail;  // Correct namespace for Mail
+use Illuminate\Support\Facades\Mail; 
 
 
 class ForgotPasswordController extends Controller

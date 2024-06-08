@@ -9,17 +9,13 @@ use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run()
     {
         $users = [];
 
         for ($i = 1; $i <= 5; $i++) {
-            // Users with role 0
+            // Admin with role 0
             $users[] = [
                 'name' => 'Admin ' . $i,
                 'email' => 'admin' . $i . '@example.com',
@@ -30,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
             ];
 
-            // Users with role 1
+            // User with role 1
             $users[] = [
                 'name' => 'User ' . $i,
                 'email' => 'user' . $i . '@example.com',
