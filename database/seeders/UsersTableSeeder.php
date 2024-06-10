@@ -15,18 +15,18 @@ class UsersTableSeeder extends Seeder
         $users = [];
 
         for ($i = 1; $i <= 5; $i++) {
-            // Admin with role 0
+            // Admin with role 1
             $users[] = [
                 'name' => 'Admin ' . $i,
                 'email' => 'admin' . $i . '@example.com',
                 'password' => Hash::make('password'),
-                'role' => 0,
+                'role' => 1,
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
 
-            // User with role 1
+            // User with role 0
             $users[] = [
                 'name' => 'User ' . $i,
                 'email' => 'user' . $i . '@example.com',
