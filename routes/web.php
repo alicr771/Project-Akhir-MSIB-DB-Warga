@@ -33,3 +33,9 @@ Route::group(['middleware'=> 'admin'], function(){
 Route::group(['middleware'=> 'user'], function(){
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
 });
+
+//ManajemenPenduduk
+Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
+
+Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
+Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
