@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -26,6 +27,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
+    Route::resource('/admin/user', UserController::class);
 });
 
 Route::group(['middleware' => 'user'], function () {

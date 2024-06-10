@@ -16,9 +16,11 @@
       </div>
       <ul class="navbar-nav  justify-content-end">
         <li class="nav-item d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-            <i class="fa fa-user me-sm-1"></i>
-            <span class="d-sm-inline d-none">Sign In</span>
+          <a href="{{ route('login') }}" class="nav-link text-white font-weight-bold d-flex gap-2 align-items-center">
+            <span class="fs-4">
+              <i class="bi bi-box-arrow-in-right"></i>
+            </span>
+            <span class="d-sm-inline d-none">Login</span>
           </a>
         </li>
         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -32,13 +34,13 @@
         </li>
         <li class="nav-item px-3 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-white p-0">
-            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+            <i class="bi bi-gear-fill"></i>
           </a>
         </li>
         <li class="nav-item dropdown pe-2 d-flex align-items-center">
           <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <i class="fa fa-bell cursor-pointer"></i>
+            <i class="bi bi-bell-fill"></i>
           </a>
           <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
             <li class="mb-2">

@@ -11,80 +11,68 @@
   <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="./pages/dashboard.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
+        <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}">
+          <i class="bi bi-people"></i>
+          <span class="nav-link-text ms-1">Manajemen Pengguna</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/tables.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Tables</span>
+          <i class="bi bi-person-arms-up"></i>
+          <span class="nav-link-text ms-1">Manajemen Penduduk</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/billing.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Billing</span>
+          <i class="bi bi-signpost"></i>
+          <span class="nav-link-text ms-1">Manajemen RT</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/virtual-reality.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-app text-info text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Virtual Reality</span>
+          <i class="bi bi-signpost-2"></i>
+          <span class="nav-link-text ms-1">Manajemen RW</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/rtl.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">RTL</span>
+          <i class="bi bi-houses"></i>
+          <span class="nav-link-text ms-1">Manajemen Kelurahan</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./pages/rtl.html">
+          <i class="bi bi-file-earmark-text"></i>
+          <span class="nav-link-text ms-1">Manajemen Dokumen</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./pages/rtl.html">
+          <i class="bi bi-file-earmark-zip"></i>
+          <span class="nav-link-text ms-1">Manajemen Mutasi</span>
         </a>
       </li>
       <li class="nav-item mt-3">
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-          Account pages
+          Advanced Option
         </h6>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/profile.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-          </div>
+          <i class="bi bi-person-circle"></i>
           <span class="nav-link-text ms-1">Profile</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/sign-in.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Sign In</span>
+          <i class="bi bi-sliders2"></i>
+          <span class="nav-link-text ms-1">Settings</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/sign-up.html">
-          <div
-            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="ni ni-collection text-info text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Sign Up</span>
+          <i class="bi bi-box-arrow-left"></i>
+          <span class="nav-link-text ms-1">Sign Out</span>
         </a>
       </li>
     </ul>
