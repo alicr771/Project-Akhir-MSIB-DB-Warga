@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'User ' . $i,
                 'email' => 'user' . $i . '@example.com',
                 'password' => Hash::make('password'),
-                'role' => 1,
+                'role' => 0,
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
