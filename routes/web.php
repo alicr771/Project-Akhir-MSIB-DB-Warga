@@ -1,10 +1,12 @@
 <?php
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ManajemenPendudukController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::view('/', 'welcome');
 
@@ -33,3 +35,9 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
 });
+
+//ManajemenPenduduk
+Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
+
+Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
+Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
