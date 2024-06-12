@@ -20,4 +20,16 @@ class penduduk extends Model
         'citizenship',
         'marital_status',
     ];
+    public function manajemenRT()
+    {
+        return $this->belongsTo(manajemenRT::class);
+    }
+    public function manajemenKeluarga()
+    {
+        return $this->hasone(manajemenKeluarga::class);
+    }
+    public function manajemenRW()
+    {
+        return $this->belongsTo(manajemenRW::class);
+    }
 }

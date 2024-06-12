@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ManajemenRT extends Model
+class manajemenKeluarga extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'head'
+        'no_kk',
     ];
-    public function penduduks()
+    public function penduduk()
     {
-        return $this->hasMany(Penduduk::class);
+        return $this->belongsTo(Penduduk::class);
     }
 }

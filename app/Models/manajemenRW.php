@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ManajemenRT extends Model
+class manajemenRW extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,8 @@ class ManajemenRT extends Model
         'name',
         'head'
     ];
-    public function penduduks()
+
+    public function penduduk()
     {
         return $this->hasMany(Penduduk::class);
     }

@@ -22,6 +22,8 @@ return new class extends Migration
             $table->enum('last_education');
             $table->enum('citizenship');
             $table->enum('marital_status');
+            $table->foreignId('manajemenRT_id')->constrained('manajemen_r_t_s')->onDelete('cascade');
+            $table->foreignId('manajemenRW_id')->constrained('manajemen_r_w_s')->onDelete('cascade');
             $table->timestamps();
         });
     }
