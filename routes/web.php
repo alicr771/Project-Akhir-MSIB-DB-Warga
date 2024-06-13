@@ -34,6 +34,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
     Route::resource('/admin/user', UserController::class);
+    Route::put('/admin/user/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
 Route::group(['middleware' => 'user'], function () {
