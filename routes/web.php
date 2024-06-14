@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\KelurahanController;
 
 Route::view('/', 'welcome');
 
@@ -36,16 +37,4 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
 });
 
-<<<<<<< HEAD
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
-
-Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
-=======
-//ManajemenPenduduk
-Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
-
-Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
-Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
->>>>>>> 69ae2b0fb90e95516f451656787c6ea65b51a99c
+Route::resource('kelurahan', KelurahanController::class);
