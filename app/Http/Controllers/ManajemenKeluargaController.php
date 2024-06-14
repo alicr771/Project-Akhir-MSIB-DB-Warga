@@ -20,7 +20,8 @@ class ManajemenKeluargaController extends Controller
      */
     public function create()
     {
-        //
+        $manajemen_keluargas = manajemenKeluarga::all();
+        return view('#', compact('manajemen_keluargas'));
     }
 
     /**
@@ -28,7 +29,16 @@ class ManajemenKeluargaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'no_kk' => 'required',
+            'penduduk_id' => 'required', 
+        ]);
+    $manajemen_keluargas = new ManajemenKeluarga();
+    $manajemen_keluargas->no_kk = $request->no_kk;
+    $manajemen_keluargas->penduduk_id = $request->penduduk_id;
+    $manajemen_keluargas->save();
+
+        return redirect()->route('#')->with('success', 'Product added successfully');
     }
 
     /**
@@ -36,7 +46,8 @@ class ManajemenKeluargaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $manajemen_keluargas = manajemenKeluarga::with('penduduk')->findOrFail($id);
+        return view('#', compact('manajemen_keluargas'));
     }
 
     /**
@@ -44,7 +55,9 @@ class ManajemenKeluargaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $manajemen_keluargas = manajemenKeluarga::findOrFail($id);
+
+        return view('#', compact('manajemen_keluargas'));
     }
 
     /**
@@ -52,7 +65,19 @@ class ManajemenKeluargaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'no_kk' => 'required',
+            'penduduk_id' => 'required', 
+        ]);
+
+    
+        $manajemen_keluargas = manajemenKeluarga::findOrFail($id);
+
+
+        $manajemen_keluargas->update($validatedData);
+
+
+        return redirect()->route('#')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -60,6 +85,9 @@ class ManajemenKeluargaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $manajemen_keluargas = manajemenKeluarga::findOrFail($id);
+        $manajemen_keluargas->delete();
+
+        return redirect()->route('#')->with('success', 'Product deleted successfully');
     }
 }

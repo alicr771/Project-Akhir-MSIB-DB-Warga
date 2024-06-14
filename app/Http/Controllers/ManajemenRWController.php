@@ -11,7 +11,8 @@ class ManajemenRWController extends Controller
      */
     public function index()
     {
-        //
+        $manajemen_r_w_s = manajemenRW::all();
+        return view('#');
     }
 
     /**
@@ -19,7 +20,8 @@ class ManajemenRWController extends Controller
      */
     public function create()
     {
-        //
+        $manajemen_r_w_s = manajemenRW::all();
+        return view('#', compact('manajemen_r_w_s'));
     }
 
     /**
@@ -27,7 +29,16 @@ class ManajemenRWController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'head' => 'required',
+        ]);
+        $manajemen_r_w_s = new ManajememRW();
+        $manajemen_r_w_s ->name = $request->name;
+        $manajemen_r_w_s ->head = $request->head;
+        $manajemen_r_w_s -> save();
+
+        return redirect()->route('#')->with('success', 'Product added successfully');
     }
 
     /**
@@ -35,7 +46,8 @@ class ManajemenRWController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $manajemen_r_w_s = manajemenRW::findOrFail($id);
+        return view('#', compact('manajemen_r_w_s'));
     }
 
     /**
@@ -43,7 +55,8 @@ class ManajemenRWController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $manajemen_r_w_s = manajemenRW::findOrFail($id);
+        return view('#', compact('manajemen_r_w_s'));
     }
 
     /**
@@ -51,7 +64,17 @@ class ManajemenRWController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'head' => 'required',
+        ]);
+        $manajemen_r_w_s = manajemenRW::findOrFail($id);
+
+
+        $manajemen_r_w_s->update($validatedData);
+
+
+        return redirect()->route('#')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -59,6 +82,9 @@ class ManajemenRWController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $manajemen_r_w_s = manajemenRW::findOrFail($id);
+        $manajemen_r_w_s->delete();
+
+        return redirect()->route('#')->with('success', 'Product deleted successfully');
     }
 }

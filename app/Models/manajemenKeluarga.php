@@ -16,4 +16,8 @@ class manajemenKeluarga extends Model
     {
         return $this->belongsTo(Penduduk::class);
     }
+    public function detailkeluarga()
+    {
+        return $this->hasOne(detailKeluarga::class);
+    }
 }
