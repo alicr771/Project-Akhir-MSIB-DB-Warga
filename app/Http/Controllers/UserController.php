@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    //MANAJEMEN PENGGUNA
     public function index()
     {
         $users = User::all();
@@ -21,24 +22,20 @@ class UserController extends Controller
         return view('admin.user.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.user.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'no_hp' => ['required', 'string', 'max:15'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'integer', 'in:0,1'],
+            
         ]);
 
         if ($validator->fails()) {
@@ -50,6 +47,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'no_hp' => $request->no_hp,
             'password' => Hash::make($request->password),
             'role' => $request->role,
             'remember_token' => Str::random(60),
@@ -58,30 +56,22 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user)
     {
         return view('admin.user.detail', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(User $user)
     {
         return view('admin.user.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'no_hp' => ['required', 'string', 'max:15'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'role' => ['required', 'integer', 'in:0,1'],
         ]);
@@ -95,7 +85,9 @@ class UserController extends Controller
         $userData = [
             'name' => $request->name,
             'email' => $request->email,
+            'no_hp' => $request->no_hp,
             'role' => $request->role,
+
         ];
     
         if (!is_null($request->password)) {
@@ -106,15 +98,118 @@ class UserController extends Controller
     
         return redirect()->route('user.index')->with('success', 'User berhasil diperbarui');
     }
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(User $user)
     {
-        
-            $user->delete();
-    
-            return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
-        
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
     }
+
+
+
+    //PROFILE
+    public function profile()
+    {
+        $user = Auth::user();
+
+        if ($user->role == 1) {
+            return view('admin.profile.index', compact('user'));
+        } elseif ($user->role == 0) {
+            return view('user.profile.index', compact('user'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
+
+    public function editProfile()
+    {
+        $user = Auth::user();
+
+        if ($user->role == 1) {
+            return view('admin.profile.edit', compact('user'));
+        } elseif ($user->role == 0) {
+            return view('user.profile.edit', compact('user'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'no_hp' => ['nullable', 'string', 'max:15'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $userData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+        ];
+
+        if ($request->password) {
+            $userData['password'] = Hash::make($request->password);
+        }
+
+        $user->update($userData);
+
+        return redirect()->route('profile')->with('success', 'Profile berhasil diperbarui');
+    }
+
+    public function editPassword()
+    {
+        $user = Auth::user();
+
+        if ($user->role == 1) {
+            return view('admin.profile.edit-password', compact('user'));
+        } elseif ($user->role == 0) {
+            return view('user.profile.edit-password', compact('user'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Password berhasil diperbarui');
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $user = $request->user();
+        Log::info('Attempting to delete user: ' . $user->id);
+        try {
+            $user->delete();
+            Log::info('User deleted successfully: ' . $user->id);
+        } catch (\Exception $e) {
+            Log::error('Failed to delete user: ' . $user->id . ' Error: ' . $e->getMessage());
+            return redirect()->route('profile')->with('error', 'Gagal menghapus user');
+        }
+        return redirect()->route('login')->with('success', 'User berhasil dihapus');
+    }
+
 }

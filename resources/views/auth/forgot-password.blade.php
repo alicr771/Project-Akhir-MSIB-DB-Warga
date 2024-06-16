@@ -17,7 +17,7 @@
             </div>
             @endif
 
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('forgot_proses') }}">
                 @csrf
 
                 <div class="form-group">

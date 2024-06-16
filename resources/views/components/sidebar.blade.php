@@ -58,10 +58,17 @@
         </h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/profile.html">
-          <i class="bi bi-person-circle"></i>
-          <span class="nav-link-text ms-1">Profile</span>
-        </a>
+        @if (Auth::user()->role == 1) {{-- Peran 1 untuk Admin --}}
+            <a class="nav-link {{ Request::is('admin/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                <i class="bi bi-person-circle"></i>
+                <span class="nav-link-text ms-1">Profile</span>
+            </a>
+        @elseif (Auth::user()->role == 0) {{-- Peran 0 untuk Staff/User --}}
+            <a class="nav-link {{ Request::is('user/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                <i class="bi bi-person-circle"></i>
+                <span class="nav-link-text ms-1">Profile</span>
+            </a>
+        @endif
       </li>
       <li class="nav-item">
         <a class="nav-link" href="./pages/sign-in.html">

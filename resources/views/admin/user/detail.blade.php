@@ -9,6 +9,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ $user->name }}</h5>
           <p class="card-text">{{ $user->email }}</p>
+          <p class="card-text">{{ $user->no_hp }}</p>
           <a href="{{ route('user.index') }}" class="btn btn-primary m-0">Back</a>
         </div>
       </div>
