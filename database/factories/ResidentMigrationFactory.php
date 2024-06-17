@@ -22,7 +22,7 @@ class ResidentMigrationFactory extends Factory
             'date' => fake()->date(),
             'from' => fake()->city(),
             'to' => fake()->city(),
-            'cause' => fake()->text(),
+            'cause' => fake()->paragraph(),
             'status' => 'single'
         ];
     }

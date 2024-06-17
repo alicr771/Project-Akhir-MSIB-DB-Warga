@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ResidentMigration;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             ResidentSeeder::class,
+            ResidentMigrationSeeder::class
         ]);
     }
 }

@@ -48,7 +48,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
+        <a class="nav-link" href="{{ route('resident-migration.index') }}">
           <i class="bi bi-file-earmark-zip"></i>
           <span class="nav-link-text ms-1">Manajemen Mutasi</span>
         </a>

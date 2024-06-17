@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('from');
             $table->string('to');
             $table->text('cause');
-            $table->enum('status', ['Single', 'Marriage']);
+            $table->enum('status', ['single', 'marriage']);
             $table->timestamps();
         });
     }

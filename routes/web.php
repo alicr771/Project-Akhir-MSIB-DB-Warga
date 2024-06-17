@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
@@ -6,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResidentMigrationController;
 
 Route::view('/', 'welcome');
 
@@ -30,6 +32,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
     Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
+    Route::resource('admin/resident-migration', ResidentMigrationController::class);
 });
 
 
