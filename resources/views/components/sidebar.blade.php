@@ -1,14 +1,15 @@
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-xl fixed-start my-3 ms-4 border-0 bg-white"
   id="sidenav-main">
   <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-      aria-hidden="true" id="iconSidenav"></i>
+    <i aria-hidden="true"
+      class="fas fa-times text-secondary position-absolute d-none d-xl-none end-0 top-0 cursor-pointer p-3 opacity-5"
+      id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="/" target="_blank">
-      <span class="ms-1 font-weight-bold">Dashboard</span>
+      <span class="font-weight-bold ms-1">Dashboard</span>
     </a>
   </div>
   <hr class="horizontal dark mt-0" />
-  <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+  <div class="navbar-collapse collapse w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}">
@@ -17,7 +18,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/tables.html">
+        <a class="nav-link" href="{{ route('resident.index') }}">
           <i class="bi bi-person-arms-up"></i>
           <span class="nav-link-text ms-1">Manajemen Penduduk</span>
         </a>
@@ -53,7 +54,7 @@
         </a>
       </li>
       <li class="nav-item mt-3">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+        <h6 class="text-uppercase font-weight-bolder opacity-6 ms-2 ps-4 text-xs">
           Advanced Option
         </h6>
       </li>

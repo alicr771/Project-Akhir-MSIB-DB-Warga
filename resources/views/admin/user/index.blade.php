@@ -11,7 +11,7 @@
       </div>
       <table class="table table-hover">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th>No</th>
             <th>Nama</th>
             <th>Email</th>
