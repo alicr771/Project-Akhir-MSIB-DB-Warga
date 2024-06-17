@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Penduduk')
+@section('title', 'Tambah Mutasi')
 
 @section('content')
   <div class="bg-body-tertiary col-md-6 container mx-0 rounded p-4 shadow">
