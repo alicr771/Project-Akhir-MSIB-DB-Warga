@@ -24,13 +24,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/billing.html">
+        <a class="nav-link" href="{{ route('neighborhood.index') }}">
           <i class="bi bi-signpost"></i>
           <span class="nav-link-text ms-1">Manajemen RT</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/virtual-reality.html">
+        <a class="nav-link" href="{{ route('community-unit.index') }}">
           <i class="bi bi-signpost-2"></i>
           <span class="nav-link-text ms-1">Manajemen RW</span>
         </a>

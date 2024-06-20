@@ -6,8 +6,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\CommunityUnitController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\ResidentMigrationController;
+use App\Models\CommunityUnit;
+use App\Models\Neighborhood;
 
 Route::view('/', 'welcome');
 
@@ -33,6 +37,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
+    Route::resource('admin/neighborhood', NeighborhoodController::class);
+    Route::resource('admin/community-unit', CommunityUnitController::class);
 });
 
 
