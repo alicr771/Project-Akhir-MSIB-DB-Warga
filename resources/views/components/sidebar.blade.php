@@ -42,7 +42,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
+        <a class="nav-link" href="{{ route('document.index') }}">
           <i class="bi bi-file-earmark-text"></i>
           <span class="nav-link-text ms-1">Manajemen Dokumen</span>
         </a>
@@ -71,7 +71,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/sign-up.html">
+        <a class="nav-link" href="{{ route('logout') }}">
           <i class="bi bi-box-arrow-left"></i>
           <span class="nav-link-text ms-1">Sign Out</span>
         </a>

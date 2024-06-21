@@ -7,11 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\CommunityUnitController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\ResidentMigrationController;
-use App\Models\CommunityUnit;
-use App\Models\Neighborhood;
 
 Route::view('/', 'welcome');
 
@@ -32,16 +31,17 @@ Route::post('/reset_post/{token}', [ResetPasswordController::class, 'postReset']
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => 'admin'], function () {
-    Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
+Route::middleware('admin')->group(function () {
     Route::resource('admin/user', UserController::class);
+    Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
     Route::resource('admin/resident', ResidentController::class);
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
     Route::resource('admin/neighborhood', NeighborhoodController::class);
     Route::resource('admin/community-unit', CommunityUnitController::class);
+    Route::resource('admin/document', DocumentController::class);
 });
 
 
-Route::group(['middleware' => 'user'], function () {
+Route::middleware('user')->group(function () {
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
 });
