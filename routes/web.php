@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ManajemenPendudukController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ResidentMigrationController;
+use App\Http\Controllers\ManajemenPendudukController;
+use App\Http\Controllers\GeneralController;
+use App\Models\General;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -18,19 +21,20 @@ Route::view('/blank', 'blank')->name('blank');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Login
-Route::get('/login', [LoginController::class, 'login'])->name('login'); // Display login form
-Route::post('/login', [LoginController::class, 'login_proses'])->name('login_proses'); // Process login form submission
+Route::get('/login', [LoginController::class, 'login'])->name('login'); 
+Route::post('/login', [LoginController::class, 'login_proses'])->name('login_proses');
 
 // Forgot
-Route::get('/forgot', [ForgotPasswordController::class, 'forgot'])->name('forgot'); // Display forgot password form
-Route::post('/forgot/proses', [ForgotPasswordController::class, 'forgot_proses'])->name('forgot_proses'); // Process forgot password form
+Route::get('/forgot', [ForgotPasswordController::class, 'forgot'])->name('forgot'); 
+Route::post('/forgot/proses', [ForgotPasswordController::class, 'forgot_proses'])->name('forgot_proses'); 
 
 // Reset 
-Route::get('/reset/{token}', [ResetPasswordController::class, 'getReset'])->name('getReset'); // Display reset password form
-Route::post('/reset_post/{token}', [ResetPasswordController::class, 'postReset'])->name('postReset'); // Process reset password form
+Route::get('/reset/{token}', [ResetPasswordController::class, 'getReset'])->name('getReset'); 
+Route::post('/reset_post/{token}', [ResetPasswordController::class, 'postReset'])->name('postReset'); 
 
 // Logout 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 // Profile
 Route::middleware(['auth'])->group(function () {
@@ -46,14 +50,17 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['admin'])->group(function () {
     Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
     Route::resource('/admin/user', UserController::class);
-    Route::put('/admin/user/{user}', [UserController::class, 'update'])->name('user.update');
-    Route::delete('/admin/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::resource('admin/resident', ResidentController::class);
+    Route::resource('admin/resident-migration', ResidentMigrationController::class);
+    Route::resource('generals', GeneralController::class);
     
 });
+
 
 // Staff 
 Route::middleware(['user'])->group(function () {
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
+    
 });
 
 Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
@@ -61,3 +68,7 @@ Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
 Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
 Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
 Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
+
+
+
+
