@@ -11,8 +11,8 @@ class kelurahan extends Controller
      */
     public function index()
     {
-        $penduduks = Penduduk::with('kelurahan')->get();
-        return view('#', compact('penduduks'));
+        $kelurahans = Kelurahan::all();
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -20,7 +20,8 @@ class kelurahan extends Controller
      */
     public function create()
     {
-        //
+        $kelurahans = Kelurahan::all();
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -28,7 +29,16 @@ class kelurahan extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'head' => 'required',
+        ]);
+        $kelurahans = new Kelurahan();
+        $kelurahans ->name = $request->name;
+        $kelurahans ->head = $request->head;
+        $kelurahans -> save();
+
+        return redirect()->route('#')->with('success', 'Product added successfully');
     }
 
     /**
@@ -36,7 +46,8 @@ class kelurahan extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kelurahans = Kelurahan::findOrFail($id);
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -44,7 +55,8 @@ class kelurahan extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kelurahans = Kelurahan::findOrFail($id);
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -52,7 +64,17 @@ class kelurahan extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'head' => 'required',
+        ]);
+        $kelurahans = Kelurahan::findOrFail($id);
+
+
+        $kelurahans->update($validatedData);
+
+
+        return redirect()->route('#')->with('success', 'Product updated successfully');
     }
 
     /**
@@ -60,6 +82,10 @@ class kelurahan extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
+        $kelurahans = Kelurahan::findOrFail($id);
+        $kelurahans->delete();
+
+        return redirect()->route('#')->with('success', 'Product deleted successfully');
     }
 }
