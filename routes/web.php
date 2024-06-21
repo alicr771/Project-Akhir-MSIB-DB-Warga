@@ -8,6 +8,7 @@ use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\SettingController;
 
 Route::view('/', 'welcome');
 
@@ -38,3 +39,5 @@ Route::group(['middleware' => 'user'], function () {
 });
 
 Route::resource('kelurahan', KelurahanController::class);
+
+Route::resource('admin/settings', SettingController::class);

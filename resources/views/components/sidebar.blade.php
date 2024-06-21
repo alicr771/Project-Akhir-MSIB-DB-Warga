@@ -64,7 +64,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/sign-in.html">
+        <a class="nav-link" href="{{ route('settings.index') }}">
           <i class="bi bi-sliders2"></i>
           <span class="nav-link-text ms-1">Settings</span>
         </a>
