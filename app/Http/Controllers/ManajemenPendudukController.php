@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penduduk;
 use Illuminate\Http\Request;
 
 class ManajemenPendudukController extends Controller
@@ -11,7 +12,7 @@ class ManajemenPendudukController extends Controller
      */
     public function index()
     {
-        $penduduks = penduduk::all();
+        $penduduks = Penduduk::all();
         return view('#');
     }
 

@@ -35,11 +35,11 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
-          <i class="bi bi-houses"></i>
-          <span class="nav-link-text ms-1">Manajemen Kelurahan</span>
+        <a class="nav-link" href="{{ route('kelurahan.index') }}">
+            <i class="bi bi-house"></i>
+            <span class="nav-link-text ms-1">Manajemen Kelurahan</span>
         </a>
-      </li>
+    </li>    
       <li class="nav-item">
         <a class="nav-link" href="./pages/rtl.html">
           <i class="bi bi-file-earmark-text"></i>

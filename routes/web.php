@@ -7,8 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
-// Route::view('/', 'welcome');
+use App\Http\Controllers\KelurahanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -43,6 +42,8 @@ Route::group(['middleware' => 'user'], function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('kelurahan', KelurahanController::class);
 
 Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
 

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('pob');
             $table->string('dob');
-            $table->enum('gender');
-            $table->enum('religion');
-            $table->enum('last_education');
-            $table->enum('citizenship');
-            $table->enum('marital_status');
+            $table->enum('gender', ['male', 'female']);
+            $table->enum('religion', ['islam', 'kristen', 'hindu', 'buddha']);
+            $table->enum('last_education', ['Tidak', 'SD', 'SMP/MTS', 'SMA/K', 'S1', 'S2']);
+            $table->enum('citizenship', ['warga negara', 'bukan warga negara']);
+            $table->enum('marital_status', ['lajang', 'menikah', 'cerai', 'duda/janda']);
             $table->foreignId('manajemenRT_id')->constrained('manajemen_r_t_s')->onDelete('cascade');
             $table->foreignId('manajemenRW_id')->constrained('manajemen_r_w_s')->onDelete('cascade');
             $table->timestamps();
