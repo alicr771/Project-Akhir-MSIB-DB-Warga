@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ManajemenRWController extends Controller
+class kelurahan extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $manajemen_r_w_s = manajemenRW::all();
-        return view('#');
+        $kelurahans = Kelurahan::all();
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -20,8 +20,8 @@ class ManajemenRWController extends Controller
      */
     public function create()
     {
-        $manajemen_r_w_s = manajemenRW::all();
-        return view('#', compact('manajemen_r_w_s'));
+        $kelurahans = Kelurahan::all();
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -33,10 +33,10 @@ class ManajemenRWController extends Controller
             'name' => 'required',
             'head' => 'required',
         ]);
-        $manajemen_r_w_s = new ManajememRW();
-        $manajemen_r_w_s ->name = $request->name;
-        $manajemen_r_w_s ->head = $request->head;
-        $manajemen_r_w_s -> save();
+        $kelurahans = new Kelurahan();
+        $kelurahans ->name = $request->name;
+        $kelurahans ->head = $request->head;
+        $kelurahans -> save();
 
         return redirect()->route('#')->with('success', 'Product added successfully');
     }
@@ -46,8 +46,8 @@ class ManajemenRWController extends Controller
      */
     public function show(string $id)
     {
-        $manajemen_r_w_s = manajemenRW::findOrFail($id);
-        return view('#', compact('manajemen_r_w_s'));
+        $kelurahans = Kelurahan::findOrFail($id);
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -55,8 +55,8 @@ class ManajemenRWController extends Controller
      */
     public function edit(string $id)
     {
-        $manajemen_r_w_s = manajemenRW::findOrFail($id);
-        return view('#', compact('manajemen_r_w_s'));
+        $kelurahans = Kelurahan::findOrFail($id);
+        return view('#', compact('kelurahans'));
     }
 
     /**
@@ -68,10 +68,10 @@ class ManajemenRWController extends Controller
             'name' => 'required',
             'head' => 'required',
         ]);
-        $manajemen_r_w_s = manajemenRW::findOrFail($id);
+        $kelurahans = Kelurahan::findOrFail($id);
 
 
-        $manajemen_r_w_s->update($validatedData);
+        $kelurahans->update($validatedData);
 
 
         return redirect()->route('#')->with('success', 'Product updated successfully');
@@ -82,8 +82,9 @@ class ManajemenRWController extends Controller
      */
     public function destroy(string $id)
     {
-        $manajemen_r_w_s = manajemenRW::findOrFail($id);
-        $manajemen_r_w_s->delete();
+        
+        $kelurahans = Kelurahan::findOrFail($id);
+        $kelurahans->delete();
 
         return redirect()->route('#')->with('success', 'Product deleted successfully');
     }

@@ -32,4 +32,8 @@ class Penduduk extends Model
     {
         return $this->belongsTo(manajemenRW::class);
     }
+    public function detailKeluarga()
+    {
+        return $this->hasOne(detailKeluarga::class);
+    }
 }
