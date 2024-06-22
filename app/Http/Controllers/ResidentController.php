@@ -13,6 +13,8 @@ class ResidentController extends Controller
     public function index()
     {
         $residents = Resident::all();
+        
+        // Kirim data ke view
         return view('admin.resident.index', compact('residents'));
     }
 
@@ -29,7 +31,7 @@ class ResidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

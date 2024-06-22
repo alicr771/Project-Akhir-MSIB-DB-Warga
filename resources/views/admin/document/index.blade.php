@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Mutasi')
+@section('title', 'Dokumen')
 
 @section('content')
   <div class="container-fluid py-4">
@@ -8,8 +8,8 @@
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header d-flex justify-content-between align-items-center pb-0">
-            <h6>Daftar Mutasi</h6>
-            <a class="btn btn-dark" href="{{ route('resident-migration.create') }}">Tambah Data Mutasi</a>
+            <h6>Daftar Document</h6>
+            <a class="btn btn-dark" href="{{ route('document.create') }}">Tambah Document</a>
           </div>
           <div class="card-body px-0 pb-2 pt-0">
             <div class="table-responsive p-0">
@@ -20,19 +20,19 @@
                       #
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Nama
+                      Tipe
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Tanggal
+                      Nomor
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Dari
+                      Jalur
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Ke
+                      Tanggal Diterbitkan
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Status
+                      Tanggal Berakhir
                     </th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
                       Aksi
@@ -40,40 +40,38 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($migrations as $migration)
+                  @foreach ($documents as $document)
                     <tr>
                       <td class="text-secondary font-weight-bold text-sm opacity-70">
                         {{ $loop->iteration }}
                       </td>
                       <td class="text-secondary text-xs">
-                        {{ $migration->resident->name }}
+                        {{ $document->type }}
                       </td>
                       <td class="text-secondary text-xs">
-                        {{ date('d M y', strtotime($migration->date)) }}
+                        {{ $document->number }}
                       </td>
                       <td class="text-secondary text-xs">
-                        {{ $migration->from }}
+                        {{ $document->path }}
                       </td>
                       <td class="text-secondary text-xs">
-                        {{ $migration->to }}
+                        {{ $document->issued_date }}
                       </td>
                       <td class="text-secondary text-xs">
-                        {{ $migration->status }}
+                        {{ $document->expiration_date }}
                       </td>
-                      <td class="d-flex gap-2 align-items-center">
+                      <td class="d-flex gap-2">
                         <a class="text-secondary font-weight-bold text-xs"
-                          href="{{ route('resident-migration.show', $migration->id) }}">
+                          href="{{ route('document.show', $document->id) }}">
                           Detail
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs "
-                          href="{{ route('resident-migration.edit', $migration->id) }}">
+                        <a class="text-secondary font-weight-bold text-xs"
+                          href="{{ route('document.edit', $document->id) }}">
                           Edit
                         </a>
-                        <form action="{{ route('resident-migration.destroy', $migration->id) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-link text-secondary font-weight-bold text-xs p-0 m-0 align-baseline">Hapus</button>
-                        </form>
+                        <a class="text-secondary font-weight-bold text-xs" href="">
+                          Hapus
+                        </a>
                       </td>
                     </tr>
                   @endforeach

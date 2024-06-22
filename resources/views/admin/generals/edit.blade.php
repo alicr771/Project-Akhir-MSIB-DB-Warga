@@ -3,9 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Edit General Setting</h1>
-
-    
-
     <form action="{{ route('generals.update', $general->id) }}" method="POST">
         @csrf
         @method('PUT')

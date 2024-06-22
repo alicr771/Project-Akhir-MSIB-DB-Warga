@@ -5,12 +5,15 @@ use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\CommunityUnitController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResidentMigrationController;
 use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\GeneralController;
-use App\Models\General;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NeighborhoodController;
+
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -35,7 +38,6 @@ Route::post('/reset_post/{token}', [ResetPasswordController::class, 'postReset']
 // Logout 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
 // Profile
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
@@ -46,19 +48,19 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile/delete-account', [UserController::class, 'deleteAccount'])->name('profile.deleteAccount');
 });
 
-// Admin 
-Route::middleware(['admin'])->group(function () {
+Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
-    Route::resource('/admin/user', UserController::class);
+    Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
-    Route::resource('generals', GeneralController::class);
-    
+    Route::resource('admin/neighborhood', NeighborhoodController::class);
+    Route::resource('admin/community-unit', CommunityUnitController::class);
+    Route::resource('admin/document', DocumentController::class);
+    Route::resource('admin/generals', GeneralController::class);
 });
 
 
-// Staff 
-Route::middleware(['user'])->group(function () {
+Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [HomeController::class, 'dashboard']);
     
 });

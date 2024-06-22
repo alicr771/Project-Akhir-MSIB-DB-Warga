@@ -24,13 +24,13 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/billing.html">
+        <a class="nav-link" href="{{ route('neighborhood.index') }}">
           <i class="bi bi-signpost"></i>
           <span class="nav-link-text ms-1">Manajemen RT</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/virtual-reality.html">
+        <a class="nav-link" href="{{ route('community-unit.index') }}">
           <i class="bi bi-signpost-2"></i>
           <span class="nav-link-text ms-1">Manajemen RW</span>
         </a>
@@ -42,7 +42,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
+        <a class="nav-link" href="{{ route('document.index') }}">
           <i class="bi bi-file-earmark-text"></i>
           <span class="nav-link-text ms-1">Manajemen Dokumen</span>
         </a>
@@ -76,13 +76,17 @@
           <i class="bi bi-box-arrow-left"></i>
           <span class="nav-link-text ms-1">Setting</span>
         </a>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}"
-           onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-            <i class="bi bi-box-arrow-left"></i>
-            <span class="nav-link-text ms-1">Sign Out</span>
-        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+              <i class="bi bi-box-arrow-left"></i>
+              <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
+      </li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
         </form>    

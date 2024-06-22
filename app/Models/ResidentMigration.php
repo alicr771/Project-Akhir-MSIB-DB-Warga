@@ -11,6 +11,7 @@ class ResidentMigration extends Model
     use HasFactory;
 
     protected $fillable = [
+        'resident_id',
         'date',
         'from',
         'to',

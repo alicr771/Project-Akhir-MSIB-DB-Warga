@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ResidentMigration;
 use Illuminate\Http\Request;
+use App\Models\Resident;
 
 class ResidentMigrationController extends Controller
 {
@@ -22,7 +23,9 @@ class ResidentMigrationController extends Controller
      */
     public function create()
     {
-        return view('admin.resident-migration.create');
+        $residents = Resident::all(); 
+
+        return view('admin.resident-migration.create', compact('residents'));
     }
 
     /**
@@ -30,7 +33,18 @@ class ResidentMigrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'resident_id' => 'required|integer',
+            'date' => 'required|date',
+            'from' => 'required|string|max:255',
+            'to' => 'required|string|max:255',
+            'cause' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        ResidentMigration::create($request->all());
+
+        return redirect()->route('resident-migration.index')->with('success', 'Resident migration created successfully.');
     }
 
     /**
@@ -49,28 +63,40 @@ class ResidentMigrationController extends Controller
     public function edit(string $id)
     {
         $migration = ResidentMigration::find($id);
+        $residents = Resident::all();
+        $statuses = ['pindah', 'datang']; 
 
-        $statuses = [
-            'single',
-            'married'
-        ];
-
-        return view('admin.resident-migration.edit', compact('migration', 'statuses'));
-    }
+        return view('admin.resident-migration.edit', compact('migration', 'residents', 'statuses'));
+   }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
-    }
+        $request->validate([
+            'resident_id' => 'required|integer',
+            'date' => 'required|date',
+            'from' => 'required|string|max:255',
+            'to' => 'required|string|max:255',
+            'cause' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        $migration = ResidentMigration::find($id);
+        $migration->update($request->all());
+
+        return redirect()->route('resident-migration.index')->with('success', 'Resident migration updated successfully.');
+        }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $migration = ResidentMigration::find($id);
+        $migration->delete();
+
+        return redirect()->route('resident-migration.index')->with('success', 'Resident migration deleted successfully.');
     }
 }
