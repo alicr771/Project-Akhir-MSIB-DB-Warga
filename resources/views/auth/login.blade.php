@@ -15,34 +15,31 @@
 								{{ session('status') }}
 							</div>
 						@endif
-                        <form action="{{ route('login') }}" method="POST" role="form">
-							@csrf
-							<div class="form-group">
-								<label class="font-weight-bold text-uppercase">Email address</label>
-								<input type="email" name="email" value="{{ old('email') }}"
-									class="form-control form-control-lg @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email">
-								@error('email')
-									<div class="alert alert-danger mt-2">
-										{{ $message }}
-									</div>
-								@enderror
-							</div>
-							<div class="form-group">
-								<label class="font-weight-bold text-uppercase">Password</label>
-								<input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror"
-									placeholder="Masukkan Password">
-								@error('password')
-									<div class="alert alert-danger mt-2">
-										{{ $message }}
-									</div>
-								@enderror
-							</div>
-							<div class="mt-3 text-center">
-								<button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Login</button>
-								<hr />
-
-								<a href="/forgot-password">Lupa Password ?</a>
+                        <form action="{{ route('login_proses') }}" method="POST" role="form">
+                            @csrf
+                            <div class="form-group">
+                                <label class="font-weight-bold text-uppercase">Email address</label>
+                                <input type="email" name="email" value="{{ old('email') }}"
+                                    class="form-control form-control-lg @error('email') is-invalid @enderror" placeholder="Masukkan Alamat Email">
+                                @error('email')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold text-uppercase">Password</label>
+                                <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                    placeholder="Masukkan Password">
+                                @error('password')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mt-3 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Login</button>
+                                <hr />
+                                <a href="/forgot-password">Lupa Password?</a>
+                            </div>
                         </form>
+                        
                     </div>
                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
                         <p class="mb-4 text-sm mx-auto">

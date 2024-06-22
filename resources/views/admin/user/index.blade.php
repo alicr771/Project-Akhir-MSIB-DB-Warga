@@ -11,10 +11,11 @@
       </div>
       <table class="table table-hover">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th>No</th>
             <th>Nama</th>
             <th>Email</th>
+            <th>Telepon</th>
             <th>Role</th>
             <th>Aksi</th>
           </tr>
@@ -25,6 +26,7 @@
               <th>{{ $loop->iteration }}</th>
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
+              <td>{{ $user->no_hp }}</td> 
               <td>{{ $user->role == 1 ? 'Admin' : 'User' }}</td>
               <td class="d-flex gap-3">
                 <a href="{{ route('user.show', $user->id) }}" class="text-info">

@@ -19,7 +19,7 @@ class ResetPasswordController extends Controller
             abort(403);
         }
 
-        return view('auth.passwords.reset', ['token' => $token]);
+        return view('auth.reset-password', ['token' => $token]);
     }
 
     public function postReset($token, ResetPassword $request)

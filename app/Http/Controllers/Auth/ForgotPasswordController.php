@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class ForgotPasswordController extends Controller
 {
     public function forgot(){
-        return view('auth.passwords.email');
+        return view('auth.forgot-password');
     }
 
     public function forgot_proses(Request $request)

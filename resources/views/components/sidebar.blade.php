@@ -1,14 +1,15 @@
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-xl fixed-start my-3 ms-4 border-0 bg-white"
   id="sidenav-main">
   <div class="sidenav-header">
-    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-      aria-hidden="true" id="iconSidenav"></i>
+    <i aria-hidden="true"
+      class="fas fa-times text-secondary position-absolute d-none d-xl-none end-0 top-0 cursor-pointer p-3 opacity-5"
+      id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="/" target="_blank">
-      <span class="ms-1 font-weight-bold">Dashboard</span>
+      <span class="font-weight-bold ms-1">Dashboard</span>
     </a>
   </div>
   <hr class="horizontal dark mt-0" />
-  <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+  <div class="navbar-collapse collapse w-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}">
@@ -17,19 +18,19 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/tables.html">
+        <a class="nav-link" href="{{ route('resident.index') }}">
           <i class="bi bi-person-arms-up"></i>
           <span class="nav-link-text ms-1">Manajemen Penduduk</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/billing.html">
+        <a class="nav-link" href="{{ route('neighborhood.index') }}">
           <i class="bi bi-signpost"></i>
           <span class="nav-link-text ms-1">Manajemen RT</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/virtual-reality.html">
+        <a class="nav-link" href="{{ route('community-unit.index') }}">
           <i class="bi bi-signpost-2"></i>
           <span class="nav-link-text ms-1">Manajemen RW</span>
         </a>
@@ -41,39 +42,54 @@
         </a>
     </li>    
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
+        <a class="nav-link" href="{{ route('document.index') }}">
           <i class="bi bi-file-earmark-text"></i>
           <span class="nav-link-text ms-1">Manajemen Dokumen</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/rtl.html">
+        <a class="nav-link" href="{{ route('resident-migration.index') }}">
           <i class="bi bi-file-earmark-zip"></i>
           <span class="nav-link-text ms-1">Manajemen Mutasi</span>
         </a>
       </li>
       <li class="nav-item mt-3">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+        <h6 class="text-uppercase font-weight-bolder opacity-6 ms-2 ps-4 text-xs">
           Advanced Option
         </h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./pages/profile.html">
-          <i class="bi bi-person-circle"></i>
-          <span class="nav-link-text ms-1">Profile</span>
-        </a>
+        @if (Auth::user()->role == 1) {{-- Peran 1 untuk Admin --}}
+            <a class="nav-link {{ Request::is('admin/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                <i class="bi bi-person-circle"></i>
+                <span class="nav-link-text ms-1">Profile</span>
+            </a>
+        @elseif (Auth::user()->role == 0) {{-- Peran 0 untuk Staff/User --}}
+            <a class="nav-link {{ Request::is('user/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                <i class="bi bi-person-circle"></i>
+                <span class="nav-link-text ms-1">Profile</span>
+            </a>
+        @endif
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('settings.index') }}">
-          <i class="bi bi-sliders2"></i>
-          <span class="nav-link-text ms-1">Settings</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="./pages/sign-up.html">
+        <a class="nav-link" href="{{ route('generals.index') }}">
           <i class="bi bi-box-arrow-left"></i>
-          <span class="nav-link-text ms-1">Sign Out</span>
+          <span class="nav-link-text ms-1">Setting</span>
         </a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+              <i class="bi bi-box-arrow-left"></i>
+              <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+          </form>
+      </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>    
       </li>
     </ul>
   </div>

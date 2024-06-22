@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manajemen_r_t_s', function (Blueprint $table) {
+        Schema::create('family_card_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('head');
+            $table->foreignId('family_card_id')->nullable();
+            $table->foreignId('resident_id')->nullable();
+            $table->enum('status', ['Family Head', 'Family Member']);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manajemen_r_t_s');
+        Schema::dropIfExists('family_card_details');
     }
 };

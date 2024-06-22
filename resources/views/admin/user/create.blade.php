@@ -16,6 +16,10 @@
           <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="{{ old('email') }}">
         </div>
         <div class="mb-3">
+          <label for="no_hp" class="form-label">No HP</label>
+          <input type="text" name="no_hp" class="form-control" id="no_hp" placeholder="Nomor Handphone" value="{{ old('no_hp') }}">
+        </div>
+        <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input type="password" name="password" id="password" class="form-control">
         </div>

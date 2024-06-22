@@ -1,7 +1,13 @@
-@extends('layouts.app', ['title' => 'Reset Password'])
+@extends('layouts.auth', ['title' => 'Forgot Password'])
 
 @section('content')
 <div class="col-md-5 mx-auto">
+    <div class="col-12 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+        <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
+            style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg'); background-size: cover;">
+            <span class="mask bg-gradient-primary opacity-6"></span>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             @if (session('status'))
@@ -10,10 +16,10 @@
             </div>
             @endif
 
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('postReset', $token) }}">
                 @csrf
 
-                <input type="hidden" name="token" value="">
+                <input type="hidden" name="token" value="{{ $token }}">
 
                 <div class="form-group">
                     <label class="font-weight-bold text-uppercase">Email Address</label>
