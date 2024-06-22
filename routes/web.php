@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ManagementKeluargaController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\ManagementKelurahanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -15,7 +17,12 @@ Route::get('/', function () {
 
 Route::view('/blank', 'blank')->name('blank');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('management-kelurahan', [ManagementKelurahanController::class, 'index']);
+Route::get('delete-management-kelurahan/{id}', [ManagementKelurahanController::class, 'delete']);
+Route::post('insert-management-kelurahan', [ManagementKelurahanController::class, 'insert']);
+Route::get('update-management-kelurahan', [ManagementKelurahanController::class, 'index']);
 
+Route::get('management-keluarga', [ManagementKeluargaController::class, 'index']);
 //login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/proses', [LoginController::class, 'login_proses'])->name('login_proses');
