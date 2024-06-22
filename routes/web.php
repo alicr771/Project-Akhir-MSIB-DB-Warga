@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ManagementKeluargaController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ManagementKelurahanController;
+use App\Http\Controllers\SettingController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -59,3 +60,13 @@ Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->na
 
 Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
 Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
+
+Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
+
+Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
+Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
+
+Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
+Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
+
+Route::resource('admin/settings', SettingController::class);
