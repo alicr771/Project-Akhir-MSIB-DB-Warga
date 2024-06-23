@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('detail_keluargas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('manajemenKeluarga_id');
-            $table->unsignedBigInteger('penduduk_id');
+            $table->foreignId('manajemenKeluarga_id');
+            $table->foreignId('penduduk_id');
             $table->string('status');
             $table->timestamps();
-
-            $table->foreign('manajemenKeluarga_id')->references('id')->on('manajemen_Keluargas')->onDelete('cascade');
-            $table->foreign('penduduk_id')->references('id')->on('penduduks')->onDelete('cascade');
         });
     }
 

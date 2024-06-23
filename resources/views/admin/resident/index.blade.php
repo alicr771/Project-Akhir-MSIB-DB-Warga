@@ -16,31 +16,31 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       #
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       NIK
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Nama
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Tempat & Tanggal Lahir
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Jenis Kelamin
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Pendidikan Terakhir
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Kewarganegaraan
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Status Pernikahan
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercasetext-xxs font-weight-bolder opacity-7 px-2">
                       Aksi
                     </th>
                   </tr>
@@ -48,40 +48,40 @@
                 <tbody>
                   @foreach ($residents as $resident)
                     <tr>
-                      <td class="text-secondary font-weight-bold text-sm opacity-70">
+                      <td class="font-weight-bold text-sm opacity-70">
                         {{ $loop->iteration }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->nik }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->name }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->pob }}, {{ date('d M y', strtotime($resident->dob)) }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->gender }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->last_education }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->citizenship }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $resident->marital_status }}
                       </td>
                       <td class="d-flex gap-2">
-                        <a class="text-secondary font-weight-bold text-xs"
+                        <a class="font-weight-bold text-xs"
                           href="{{ route('resident.show', $resident->id) }}">
                           Detail
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs"
+                        <a class="font-weight-bold text-xs"
                           href="{{ route('resident.edit', $resident->id) }}">
                           Edit
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs" href="">
+                        <a class="font-weight-bold text-xs" href="">
                           Hapus
                         </a>
                       </td>

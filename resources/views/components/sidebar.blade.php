@@ -1,219 +1,104 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-radius-xl fixed-start my-3 ms-4 border-0 bg-white"
-  id="sidenav-main">
-  <div class="sidenav-header">
-    <i aria-hidden="true"
-      class="fas fa-times text-secondary position-absolute d-none d-xl-none end-0 top-0 cursor-pointer p-3 opacity-5"
-      id="iconSidenav"></i>
-    <a class="navbar-brand m-0" href="/" target="_blank">
-      <span class="font-weight-bold ms-1">Dashboard</span>
-    </a>
-  </div>
-  <hr class="horizontal dark mt-0" />
-  <div class="navbar-collapse collapse w-auto" id="sidenav-collapse-main">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}">
-          <i class="bi bi-people"></i>
-          <span class="nav-link-text ms-1">Manajemen Pengguna</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('resident.index') }}">
-          <i class="bi bi-person-arms-up"></i>
-          <span class="nav-link-text ms-1">Manajemen Penduduk</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('neighborhood.index') }}">
-          <i class="bi bi-signpost"></i>
-          <span class="nav-link-text ms-1">Manajemen RT</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('community-unit.index') }}">
-          <i class="bi bi-signpost-2"></i>
-          <span class="nav-link-text ms-1">Manajemen RW</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{url('management-kelurahan')}}">
-          <i class="bi bi-houses"></i>
-          <span class="nav-link-text ms-1">Manajemen Kelurahan</span>
-        </a>
-    </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('document.index') }}">
-          <i class="bi bi-file-earmark-text"></i>
-          <span class="nav-link-text ms-1">Manajemen Dokumen</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('resident-migration.index') }}">
-          <i class="bi bi-file-earmark-zip"></i>
-          <span class="nav-link-text ms-1">Manajemen Mutasi</span>
-        </a>
-      </li>
-      <li class="nav-item mt-3">
-        <h6 class="text-uppercase font-weight-bolder opacity-6 ms-2 ps-4 text-xs">
-          Advanced Option
-        </h6>
-      </li>
-      <li class="nav-item">
-        @if (Auth::user()->role == 1) {{-- Peran 1 untuk Admin --}}
-            <a class="nav-link {{ Request::is('admin/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
-                <i class="bi bi-person-circle"></i>
-                <span class="nav-link-text ms-1">Profile</span>
-            </a>
-        @elseif (Auth::user()->role == 0) {{-- Peran 0 untuk Staff/User --}}
-            <a class="nav-link {{ Request::is('user/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
-                <i class="bi bi-person-circle"></i>
-                <span class="nav-link-text ms-1">Profile</span>
-            </a>
-        @endif
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('generals.index') }}">
-          <i class="bi bi-box-arrow-left"></i>
-          <span class="nav-link-text ms-1">Setting</span>
-        </a>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('logout') }}"
-             onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-              <i class="bi bi-box-arrow-left"></i>
-              <span class="nav-link-text ms-1">Sign Out</span>
-          </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-          </form>
-      </li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>    
-      </li>
-    </ul>
-  </div>
-</aside>
-
-
-
-
-
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-  <div class="scrollbar-inner">
-    <!-- Brand -->
-    <div class="sidenav-header  align-items-center">
-      <a class="navbar-brand" href="javascript:void(0)">
-        <img src="{{asset('')}}assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-      </a>
+    <div class="scrollbar-inner">
+        <!-- Brand -->
+        <div class="sidenav-header align-items-center">
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="https://ui-avatars.com/api/?name=DbWarga&background=5f73e2&color=fff&rounded=true" class="navbar-brand-img" alt="...">
+				<span class="ms-1 font-weight-bolder text-primary">Dashboard</span>
+            </a>
+        </div>
+        <div class="navbar-inner">
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-link-text ms-1">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('user.*') ? 'active' : '' }}" href="{{ route('user.index') }}">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-link-text ms-1">Pengguna</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('resident.*') ? 'active' : '' }}" href="{{ route('resident.index') }}">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-link-text ms-1">Penduduk</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::is('user.index') ? 'active' : '' }}" href="{{ route('user.index') }}">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-link-text ms-1">Keluarga</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('neighborhood.*') ? 'active' : '' }}" href="{{ route('neighborhood.index') }}">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-link-text ms-1">RT</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('community-unit.*') ? 'active' : '' }}" href="{{ route('community-unit.index') }}">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-link-text ms-1">RW</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('kelurahan.*') ? 'active' : '' }}" href="{{ route('kelurahan.index') }}">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-link-text ms-1">Kelurahan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('document.*') ? 'active' : '' }}" href="{{ route('document.index') }}">
+                            <i class="fas fa-file"></i>
+                            <span class="nav-link-text ms-1">Dokumen</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('resident-migration.*') ? 'active' : '' }}" href="{{ route('resident-migration.index') }}">
+                            <i class="fas fa-check"></i>
+                            <span class="nav-link-text ms-1">Mutasi</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Divider -->
+                <hr class="my-3">
+                <!-- Heading -->
+                <h6 class="navbar-heading p-0 text-muted">
+                    <span class="docs-normal">Other</span>
+                </h6>
+                <!-- Navigation -->
+                <ul class="navbar-nav mb-md-3">
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile') }}">
+                            <i class="fas fa-users"></i>
+                            <span class="nav-link-text ms-1">Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
+                            <i class="fas fa-cog"></i>
+                            <span class="nav-link-text ms-1">Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+							onclick="event.preventDefault();
+							  document.getElementById('logout-form').submit();">
+						<i class="fas fa-arrow-left"></i>
+							<span class="nav-link-text ms-1">Sign Out</span>
+						</a>
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+							@csrf
+						</form>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="navbar-inner">
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link {{ Request::is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}">
-              <i class="fas fa-users"></i>
-              <span class="nav-link-text ms-1">Manajemen Pengguna</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/tables.html">
-              <i class="fas fa-user"></i>
-              <span class="nav-link-text ms-1">Manajemen Penduduk</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('management-keluarga')}}">
-              <i class="fas fa-home"></i>
-              <span class="nav-link-text ms-1">Manajemen Keluarga</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/billing.html">
-              <i class="fas fa-user"></i>
-              <span class="nav-link-text ms-1">Manajemen RT</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/virtual-reality.html">
-              <i class="fas fa-user"></i>
-              <span class="nav-link-text ms-1">Manajemen RW</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{url('management-kelurahan')}}">
-              <i class="fas fa-home"></i>
-              <span class="nav-link-text ms-1">Manajemen Kelurahan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/rtl.html">
-              <i class="fas fa-file"></i>
-              <span class="nav-link-text ms-1">Manajemen Dokumen</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/rtl.html">
-              <i class="fas fa-check"></i>
-              <span class="nav-link-text ms-1">Manajemen Mutasi</span>
-            </a>
-          </li>
-
-        </ul>
-        {{-- <h6 class="navbar-heading p-0 text-muted">
-          <span class="docs-normal"> Advanced Option</span>
-        </h6>
-        <ul>
-
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/profile.html">
-              <i class="bi bi-person-circle"></i>
-              <span class="nav-link-text ms-1">Profile</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/sign-in.html">
-              <i class="bi bi-sliders2"></i>
-              <span class="nav-link-text ms-1">Settings</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./pages/sign-up.html">
-              <i class="bi bi-box-arrow-left"></i>
-              <span class="nav-link-text ms-1">Sign Out</span>
-            </a>
-          </li>
-        </ul> --}}
-          <!-- Divider -->
-          <hr class="my-3">
-          <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
-          </h6>
-          <!-- Navigation -->
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="./pages/profile.html">
-                <i class="fas fa-users"></i>
-                <span class="nav-link-text ms-1">Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./pages/sign-in.html">
-                <i class="fas fa-cog"></i>
-                <span class="nav-link-text ms-1">Settings</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./pages/sign-up.html">
-                <i class="fas fa-arrow-left"></i>
-                <span class="nav-link-text ms-1">Sign Out</span>
-              </a>
-            </li>
-
-          </ul>
-      </div>
-    </div>
-  </div>
 </nav>

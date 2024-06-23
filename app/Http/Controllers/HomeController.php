@@ -8,14 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // if(Auth::user()->role == 1)
-        // {
-            return view('admin.dashboard');
-        // }
-        // else if(Auth::user()->role == 0)
-        // {
-        //     return view('user.dashboard');
-        // }
-
+        $role = Auth::user() && Auth::user()->role == 1 ? 'admin' : 'user';
+        return view($role . ".dashboard");
     }
 }

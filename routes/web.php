@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('admin/dashboard', [HomeController::class, 'dashboard']);
+    Route::get('admin/dashboard', [HomeController::class, 'index']);
     Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
@@ -66,11 +66,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::resource('admin/community-unit', CommunityUnitController::class);
     Route::resource('admin/document', DocumentController::class);
     Route::resource('admin/generals', GeneralController::class);
+    Route::resource('admin/settings', SettingController::class); 
 });
 
 
 Route::group(['middleware' => 'user'], function () {
-    Route::get('user/dashboard', [HomeController::class, 'dashboard']);
+    Route::get('user/dashboard', [HomeController::class, 'index']);
     
 });
 
@@ -89,5 +90,3 @@ Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
 Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
 Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
 Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
-
-Route::resource('admin/settings', SettingController::class); 

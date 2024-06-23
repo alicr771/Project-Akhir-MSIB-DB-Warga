@@ -7,7 +7,6 @@ use App\Models\FamilyCardDetail;
 use App\Models\Neighborhood;
 use App\Models\SubDistrict;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Testing\Fakes\Fake;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Resident>
@@ -22,7 +21,7 @@ class ResidentFactory extends Factory
     public function definition(): array
     {
         return [
-            'nik' => fake()->nik(),
+            'nik' => '',
             'name' => fake()->name(),
             'pob' => fake()->city(),
             'dob' => fake()->date(),

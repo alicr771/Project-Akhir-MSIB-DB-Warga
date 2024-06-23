@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             ResidentSeeder::class,
-            ResidentMigrationSeeder::class,
+            // ResidentMigrationSeeder::class,
             DocumentSeeder::class
         ]);
     }
