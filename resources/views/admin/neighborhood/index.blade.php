@@ -16,16 +16,16 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       #
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Kepala Keluarga
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      Kepala RT
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
-                      Nama
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      Nama RT
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Aksi
                     </th>
                   </tr>
@@ -33,27 +33,31 @@
                 <tbody>
                   @foreach ($neighborhoods as $neighborhood)
                     <tr>
-                      <td class="text-secondary font-weight-bold text-sm opacity-70">
+                      <td class="font-weight-bold text-sm opacity-70">
                         {{ $loop->iteration }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $neighborhood->head }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class="text-xs">
                         {{ $neighborhood->name }}
                       </td>
                       <td class="d-flex gap-2">
-                        <a class="text-secondary font-weight-bold text-xs"
+                        <a class="font-weight-bold text-xs"
                           href="{{ route('neighborhood.show', $neighborhood->id) }}">
                           Detail
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs"
+                        <a class="font-weight-bold text-xs"
                           href="{{ route('neighborhood.edit', $neighborhood->id) }}">
                           Edit
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs" href="">
-                          Hapus
-                        </a>
+                        <form action="{{ route('neighborhood.destroy', $neighborhood->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-link font-weight-bold text-xs p-0 m-0">
+                            Hapus
+                          </button>
+                        </form>
                       </td>
                     </tr>
                   @endforeach

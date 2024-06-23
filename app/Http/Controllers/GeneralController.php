@@ -1,58 +1,57 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\General;
 use Illuminate\Http\Request;
+use App\Models\General;
+use Illuminate\Support\Facades\Validator;
 
 class GeneralController extends Controller
 {
     public function index()
     {
-        $generals = General::all();
-        return view('admin.generals.index', compact('generals'));
+        $general = General::first();
+
+        return view('admin.generals.index', compact('general'));
     }
 
-    public function create()
-    {
-        return view('admin.generals.create');
-    }
 
-    public function store(Request $request)
+    public function edit($id)
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'head' => 'required',
-            'deputy_head' => 'required',
-            'treasurer' => 'required',
-            'secretary' => 'required',
-        ]);
+        $general = General::findOrFail($id);
 
-        General::create($request->all());
-        return redirect()->route('generals.index')->with('success', 'General setting created successfully.');
-    }
-    public function show(General $general)
-    {
-        return view('admin.generals.show', compact('general'));
-    }
-
-    public function edit(General $general)
-    {
         return view('admin.generals.edit', compact('general'));
     }
 
-    public function update(Request $request, General $general)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'head' => 'required',
-            'deputy_head' => 'required',
-            'treasurer' => 'required',
-            'secretary' => 'required',
+        $general = General::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'head' => ['required', 'string', 'max:255'],
+            'deputy_head' => ['required', 'string', 'max:255'],
+            'treasurer' => ['required', 'string', 'max:255'],
+            'secretary' => ['required', 'string', 'max:255'],
         ]);
 
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $general->update($request->all());
-        return redirect()->route('generals.index')->with('success', 'General setting updated successfully.');
+
+        return redirect()->route('generals.index')->with('success', 'General updated successfully');
+    }
+
+    //USER
+    public function general()
+    {
+        $general = General::first();
+
+        return view('user.generals.index', compact('general'));
     }
 }

@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ResidentSeeder::class,
             // ResidentMigrationSeeder::class,
-            DocumentSeeder::class
+            DocumentSeeder::class,
+            GeneralSeeder::class,
         ]);
     }
 }

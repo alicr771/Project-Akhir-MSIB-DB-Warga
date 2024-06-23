@@ -33,7 +33,7 @@
                         <label for="secretary">Sekretaris</label>
                         <input type="text" name="secretary" class="form-control" id="secretary" value="{{ $general->secretary }}" readonly>
                     </div>
-                    <a href="{{ route('generals.edit', $general->id) }}" class="btn btn-warning">Edit General</a> 
+                    
                 </div>
             </div>
         </div>

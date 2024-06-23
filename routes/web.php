@@ -13,7 +13,6 @@ use App\Http\Controllers\CommunityUnitController;
 use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\ResidentMigrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-
 use App\Http\Controllers\ManagementKeluargaController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\KelurahanController;
