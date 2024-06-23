@@ -71,7 +71,7 @@ Route::group(['middleware' => 'admin'], function () {
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [HomeController::class, 'index']);
-    
+    Route::get('user/generals', [GeneralController::class, 'general']);
 });
 
 Route::resource('kelurahan', KelurahanController::class);
