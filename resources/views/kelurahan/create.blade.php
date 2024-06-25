@@ -13,6 +13,7 @@
             <label for="head">Alamat:</label>
             <input type="text" class="form-control" id="head" name="head">
         </div>
+        <a class="btn btn-secondary flex-grow-1" href="{{ route('kelurahan.index') }}">Kembali</a>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
