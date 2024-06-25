@@ -74,12 +74,20 @@
                 </h6>
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-md-3">
+                    
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile') }}">
-                            <i class="fas fa-users"></i>
-                            <span class="nav-link-text ms-1">Profile</span>
-                        </a>
-                    </li>
+                        @if (Auth::user()->role == 1) {{-- Peran 1 untuk Admin --}}
+                            <a class="nav-link {{ Request::is('admin/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                                <i class="fas fa-users"></i>
+                                <span class="nav-link-text ms-1">Profile</span>
+                            </a>
+                        @elseif (Auth::user()->role == 0) {{-- Peran 0 untuk Staff/User --}}
+                            <a class="nav-link {{ Request::is('user/profile') ? 'active' : '' }}" href="{{ route('profile') }}">
+                                <i class="fas fa-users"></i>
+                                <span class="nav-link-text ms-1">Profile</span>
+                            </a>
+                        @endif
+                    </li> 
                     <li class="nav-item">
                         <a class="nav-link" {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
                             <i class="fas fa-cog"></i>

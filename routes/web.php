@@ -60,6 +60,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/dashboard', [HomeController::class, 'index']);
     Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
+    Route::post('/admin/residents/store', [ResidentController::class, 'store'])->name('admin.resident.store');
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
     Route::resource('admin/neighborhood', NeighborhoodController::class);
     Route::resource('admin/community-unit', CommunityUnitController::class);

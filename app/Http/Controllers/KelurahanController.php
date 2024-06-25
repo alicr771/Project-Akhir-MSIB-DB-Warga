@@ -22,8 +22,8 @@ class KelurahanController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required'
+            'head' => 'required',
+            
         ]);
 
         Kelurahan::create($request->all());
@@ -44,8 +44,8 @@ class KelurahanController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required'
+            'head' => 'required',
+            
         ]);
 
         $kelurahan->update($request->all());

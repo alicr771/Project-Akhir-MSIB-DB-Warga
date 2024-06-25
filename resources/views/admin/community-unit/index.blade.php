@@ -16,44 +16,46 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       #
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Kepala Keluarga
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Nama
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Aksi
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($communityUnits as $communityUnit)
+                  @foreach ($communityUnits as $CommunityUnit)
                     <tr>
-                      <td class="text-secondary font-weight-bold text-sm opacity-70">
+                      <td class=" font-weight-bold text-sm opacity-70">
                         {{ $loop->iteration }}
                       </td>
-                      <td class="text-secondary text-xs">
-                        {{ $communityUnit->head }}
+                      <td class=" text-xs">
+                        {{ $CommunityUnit->head }}
                       </td>
-                      <td class="text-secondary text-xs">
-                        {{ $communityUnit->name }}
+                      <td class=" text-xs">
+                        {{ $CommunityUnit->name }}
                       </td>
                       <td class="d-flex gap-2">
-                        <a class="text-secondary font-weight-bold text-xs"
-                          href="{{ route('community-unit.show', $communityUnit->id) }}">
+                        <a class=" font-weight-bold text-xs"
+                          href="{{ route('community-unit.show', $CommunityUnit->id) }}">
                           Detail
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs"
-                          href="{{ route('community-unit.edit', $communityUnit->id) }}">
+                        <a class=" font-weight-bold text-xs"
+                          href="{{ route('community-unit.edit', $CommunityUnit->id) }}">
                           Edit
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs" href="">
-                          Hapus
-                        </a>
+                        <form action="{{ route('community-unit.destroy', $CommunityUnit->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-link text-danger font-weight-bold text-xs" type="submit">Hapus</button>
+                        </form>
                       </td>
                     </tr>
                   @endforeach
