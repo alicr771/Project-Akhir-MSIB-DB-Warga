@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\CommunityUnit;
@@ -30,7 +29,18 @@ class CommunityUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'head' => 'required|string|max:255',
+        ]);
+
+        CommunityUnit::create([
+            'name' => $request->name,
+            'head' => $request->head,
+        ]);
+
+        return redirect()->route('community-unit.index')->with('success', 'Penduduk RW berhasil ditambahkan');
     }
 
     /**
@@ -44,24 +54,34 @@ class CommunityUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(CommunityUnit $communityUnit)
     {
-        //
+        return view('admin.community-unit.edit', compact('communityUnit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, CommunityUnit $communityUnit)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'head' => 'required|string|max:255',
+        ]);
+
+        $data = $request->only(['name', 'head']);
+
+        $communityUnit->update($data);
+        return redirect()->route('community-unit.index')->with('success', 'Data penduduk RW berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CommunityUnit $communityUnit)
     {
-        //
+        $communityUnit->delete();
+
+        return redirect()->route('community-unit.index')->with('success', 'Penduduk RW berhasil dihapus');
     }
 }

@@ -3,88 +3,99 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resident;
+use App\Models\Neighborhood;
+use App\Models\CommunityUnit;
+use App\Models\Kelurahan;
 use Illuminate\Http\Request;
 
 class ResidentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $residents = Resident::all();
         
-        // Kirim data ke view
+        $residents = Resident::all();
         return view('admin.resident.index', compact('residents'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('admin.resident.create');
+        $neighborhoods = Neighborhood::all();
+        $communityUnits = CommunityUnit::all();
+        $kelurahans = Kelurahan::all();
+        return view('admin.resident.create', compact('neighborhoods', 'communityUnits', 'kelurahans'));
+    
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        
+    public function store(Request $request){
+
+    
+    $request->validate([
+        'nik' => 'required|unique:residents,nik', 
+        'name' => 'required',
+        'pob' => 'required',
+        'dob' => 'required|date',
+        'gender' => 'required|in:male,female',
+        'religion' => 'required|in:islam,kristen,hindu,buddha',
+        'last_education' => 'required|in:sd,smp,sma,diploma,sarjana',
+        'citizenship' => 'required|in:wna,wni',
+        'marital_status' => 'required|in:married,single',
+        'kelurahan_id' => 'required|exists:kelurahans,id',
+        'neighborhood_id' => 'required|exists:neighborhoods,id',
+        'community_unit_id' => 'required|exists:community_units,id',
+    ]);
+
+
+        Resident::create($request->all());
+
+        return redirect()->route('resident.index')->with('success', 'Resident added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Resident $resident)
+    public function show($id)
     {
+        $resident = Resident::findOrFail($id);
         return view('admin.resident.detail', compact('resident'));
     }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Resident $resident)
+    public function edit($id)
     {
-        $selectOptions = [
-            'gender' => [
-                'male',
-                'female'
-            ],
-            'last_education' => [
-                'sd',
-                'smp',
-                'sma',
-                'diploma',
-                'sarjana'
-            ],
-            'citizenship' => [
-                'wna',
-                'wni'
-            ],
-            'marital_status' => [
-                'married',
-                'single'
-            ]
-        ];
+        $resident = Resident::findOrFail($id);
+        $neighborhoods = Neighborhood::all();
+        $communityUnits = CommunityUnit::all();
+        $kelurahans = Kelurahan::all();
+        return view('admin.resident.edit', compact('resident', 'neighborhoods', 'communityUnits', 'kelurahans'));
+        }
 
-        return view('admin.resident.edit', compact('resident', 'selectOptions'));
+    public function update(Request $request, $id)
+    {
+        
+        $resident = Resident::findOrFail($id);
+        $request->validate([
+            'nik' => 'required',
+            'name' => 'required',
+            'pob' => 'required',
+            'dob' => 'required|date',
+            'gender' => 'required|in:male,female',
+            'religion' => 'required|in:islam,kristen,hindu,buddha',
+            'last_education' => 'required|in:sd,smp,sma,diploma,sarjana',
+            'citizenship' => 'required|in:wna,wni',
+            'marital_status' => 'required|in:married,single',
+            'kelurahan_id' => 'required|exists:kelurahans,id',
+            'neighborhood_id' => 'required|exists:neighborhoods,id',
+            'community_unit_id' => 'required|exists:community_units,id',
+        ]);  
+
+        $resident->update($request->all());
+
+        return redirect()->route('resident.index')->with('success', 'Resident updated successfully.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Resident $resident)
+    public function destroy($id)
     {
-        //
+        $resident = Resident::findOrFail($id);
+        $resident->delete();
+
+        return redirect()->route('resident.index')->with('success', 'Resident deleted successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Resident $resident)
-    {
-        //
-    }
 }

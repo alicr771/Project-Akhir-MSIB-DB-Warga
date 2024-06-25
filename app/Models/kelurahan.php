@@ -9,13 +9,10 @@ class Kelurahan extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'head'
-    ];
+    protected $fillable = ['name','head'];
 
-    public function penduduks()
+    public function residents()
     {
-        return $this->hasMany(Penduduk::class, 'kelurahan_id', 'id_kelurahan');
+        return $this->hasMany(Resident::class);
     }
 }

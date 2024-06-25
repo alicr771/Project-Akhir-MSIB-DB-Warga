@@ -8,16 +8,14 @@
         <tr>
             <th>No</th>
             <th>Nama</th>
-            <th>Alamat</th>
-            <th>Kontak</th>
+            <th>Head</th>
             <th>Aksi</th>
         </tr>
         @foreach ($kelurahans as $kelurahan)
         <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $kelurahan->name }}</td>
-            <td>{{ $kelurahan->address }}</td>
-            <td>{{ $kelurahan->contact }}</td>
+            <td>{{ $kelurahan->head }}</td>
             <td>
                 <a href="{{ route('kelurahan.show', $kelurahan->id) }}" class="btn btn-info">Lihat</a>
                 <a href="{{ route('kelurahan.edit', $kelurahan->id) }}" class="btn btn-warning">Edit</a>

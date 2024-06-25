@@ -74,8 +74,9 @@
                 </h6>
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-md-3">
+                    
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile') }}">
+                        <a class="nav-link {{ Route::is('profile.*') || Route::is('profile') ? 'active' : '' }}" href="{{ route('profile') }}">
                             <i class="fas fa-users"></i>
                             <span class="nav-link-text ms-1">Profile</span>
                         </a>
@@ -87,7 +88,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link "href="{{ route('logout') }}"
+                        <a class="nav-link bg-primary mx-2 text-white" style="border-radius: .25rem" href="{{ route('logout') }}"
 							onclick="event.preventDefault();
 							  document.getElementById('logout-form').submit();">
 						<i class="fas fa-arrow-left"></i>

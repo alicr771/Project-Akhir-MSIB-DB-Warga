@@ -30,7 +30,17 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'type' => 'required',
+            'number' => 'required',
+            'path' => 'required',
+            'issued_date' => 'required',
+            'expiration_date' => 'required',
+            'notes' => 'required',
+        ]);
+        Document::create($request->all());
+
+        return redirect()->back()->with('suc_message', 'Data Berhasil disimpan!');
     }
 
     /**
@@ -54,7 +64,19 @@ class DocumentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $id = $request->id;
+        $data = [
+            'type' => $request->type,
+            'number' => $request->number,
+            'path' => $request->path,
+            'issued_date' => $request->issued_date,
+            'expiration_date' => $request->expiration_date,
+            'notes' => $request->notes,
+        ];
+
+        Document::where('id', $id)->update($data);
+
+        return redirect()->back()->with('suc_message', 'Data Berhasil disimpan!');
     }
 
     /**
@@ -62,6 +84,6 @@ class DocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Document::where('id', $id)->delete();
     }
 }

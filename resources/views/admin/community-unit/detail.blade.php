@@ -16,20 +16,20 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Kepala Keluarga
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Nama
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="text-secondary text-xs">
+                    <td class=" text-xs">
                       {{ $communityUnit->head }}
                     </td>
-                    <td class="text-secondary text-xs">
+                    <td class=" text-xs">
                       {{ $communityUnit->name }}
                     </td>
                   </tr>

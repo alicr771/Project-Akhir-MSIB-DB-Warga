@@ -11,13 +11,10 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $kelurahan->name }}">
         </div>
         <div class="form-group">
-            <label for="address">Alamat:</label>
-            <input type="text" class="form-control" id="address" name="address" value="{{ $kelurahan->address }}">
+            <label for="head">Nama Lurah</label>
+            <input type="text" class="form-control" id="head" name="head" value="{{ $kelurahan->address }}">
         </div>
-        <div class="form-group">
-            <label for="contact">Kontak:</label>
-            <input type="text" class="form-control" id="contact" name="contact" value="{{ $kelurahan->contact }}">
-        </div>
+        <a class="btn btn-secondary flex-grow-1" href="{{ route('kelurahan.index') }}">Kembali</a>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

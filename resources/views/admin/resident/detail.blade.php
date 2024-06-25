@@ -16,45 +16,69 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       NIK
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       Tempat & Tanggal Lahir
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       Jenis Kelamin
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       Pendidikan Terakhir
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       Kewarganegaraan
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
                       Status Pernikahan
+                    </th>
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      Agama
+                    </th>
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      RT
+                    </th>
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      RW
+                    </th>
+                    <th class="text-uppercase text-xxs font-weight-bolder opacity-7 px-2">
+                      Kelurahan
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="text-secondary text-xs">
+                    <td class="text-xs">
                       {{ $resident->nik }}
                     </td>
-                    <td class="text-secondary text-xs">
+                    <td class="text-xs">
                       {{ $resident->pob }}, {{ date('d M y', strtotime($resident->dob)) }}
                     </td>
-                    <td class="text-secondary text-xs">
-                      {{ $resident->gender }}
+                    <td class="text-xs">
+                      {{ ucfirst($resident->gender) }}
                     </td>
-                    <td class="text-secondary text-xs">
-                      {{ $resident->last_education }}
+                    <td class="text-xs">
+                      {{ ucfirst($resident->last_education) }}
                     </td>
-                    <td class="text-secondary text-xs">
-                      {{ $resident->citizenship }}
+                    <td class="text-xs">
+                      {{ strtoupper($resident->citizenship) }}
                     </td>
-                    <td class="text-secondary text-xs">
-                      {{ $resident->marital_status }}
+                    <td class="text-xs">
+                      {{ ucfirst($resident->marital_status) }}
+                    </td>
+                    <td class="text-xs">
+                      {{ ucfirst($resident->religion) }}
+                    </td>
+                    <td class="text-xs">
+                      {{ $resident->neighborhood->name }}
+                    </td>
+                    <td class="text-xs">
+                      {{ $resident->communityUnit->name }}
+                    </td>
+                    <td class="text-xs">
+                      {{ $resident->kelurahan->name }}
                     </td>
                   </tr>
                 </tbody>

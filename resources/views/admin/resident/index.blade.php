@@ -81,9 +81,13 @@
                           href="{{ route('resident.edit', $resident->id) }}">
                           Edit
                         </a>
-                        <a class="font-weight-bold text-xs" href="">
-                          Hapus
-                        </a>
+                        <form action="{{ route('resident.destroy', $resident->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-link font-weight-bold text-xs p-0 m-0">
+                            Hapus
+                          </button>
+                        </form>
                       </td>
                     </tr>
                   @endforeach

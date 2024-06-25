@@ -10,13 +10,10 @@
             <input type="text" class="form-control" id="name" name="name">
         </div>
         <div class="form-group">
-            <label for="address">Alamat:</label>
-            <input type="text" class="form-control" id="address" name="address">
+            <label for="head">Alamat:</label>
+            <input type="text" class="form-control" id="head" name="head">
         </div>
-        <div class="form-group">
-            <label for="contact">Kontak:</label>
-            <input type="text" class="form-control" id="contact" name="contact">
-        </div>
+        <a class="btn btn-secondary flex-grow-1" href="{{ route('kelurahan.index') }}">Kembali</a>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>

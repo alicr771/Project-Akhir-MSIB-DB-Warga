@@ -16,25 +16,25 @@
               <table class="align-items-center mb-0 table">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       #
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Nama
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Tanggal
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Dari
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Ke
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Status
                     </th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 px-2">
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 px-2">
                       Aksi
                     </th>
                   </tr>
@@ -42,37 +42,37 @@
                 <tbody>
                   @foreach ($migrations as $migration)
                     <tr>
-                      <td class="text-secondary font-weight-bold text-sm opacity-70">
+                      <td class=" font-weight-bold text-sm opacity-70">
                         {{ $loop->iteration }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class=" text-xs">
                         {{ $migration->resident->name }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class=" text-xs">
                         {{ date('d M y', strtotime($migration->date)) }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class=" text-xs">
                         {{ $migration->from }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class=" text-xs">
                         {{ $migration->to }}
                       </td>
-                      <td class="text-secondary text-xs">
+                      <td class=" text-xs">
                         {{ $migration->status }}
                       </td>
                       <td class="d-flex gap-2 align-items-center">
-                        <a class="text-secondary font-weight-bold text-xs"
+                        <a class=" font-weight-bold text-xs"
                           href="{{ route('resident-migration.show', $migration->id) }}">
                           Detail
                         </a>
-                        <a class="text-secondary font-weight-bold text-xs "
+                        <a class=" font-weight-bold text-xs "
                           href="{{ route('resident-migration.edit', $migration->id) }}">
                           Edit
                         </a>
                         <form action="{{ route('resident-migration.destroy', $migration->id) }}" method="POST">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" class="btn btn-link text-secondary font-weight-bold text-xs p-0 m-0 align-baseline">Hapus</button>
+                          <button type="submit" class="btn btn-link  font-weight-bold text-xs p-0 m-0 align-baseline">Hapus</button>
                         </form>
                       </td>
                     </tr>
