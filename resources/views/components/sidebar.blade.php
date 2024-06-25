@@ -36,31 +36,31 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('neighborhood.*') ? 'active' : '' }}" href="{{ route('neighborhood.index') }}">
+                        <a class="nav-link {{ Route::is('neighborhood.*') ? 'active' : '' }}" href="{{ route('neighborhood.index') }}">
                             <i class="fas fa-user"></i>
                             <span class="nav-link-text ms-1">RT</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('community-unit.*') ? 'active' : '' }}" href="{{ route('community-unit.index') }}">
+                        <a class="nav-link {{ Route::is('community-unit.*') ? 'active' : '' }}" href="{{ route('community-unit.index') }}">
                             <i class="fas fa-user"></i>
                             <span class="nav-link-text ms-1">RW</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('kelurahan.*') ? 'active' : '' }}" href="{{ route('kelurahan.index') }}">
+                        <a class="nav-link {{ Route::is('kelurahan.*') ? 'active' : '' }}" href="{{ route('kelurahan.index') }}">
                             <i class="fas fa-home"></i>
                             <span class="nav-link-text ms-1">Kelurahan</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('document.*') ? 'active' : '' }}" href="{{ route('document.index') }}">
+                        <a class="nav-link {{ Route::is('document.*') ? 'active' : '' }}" href="{{ route('document.index') }}">
                             <i class="fas fa-file"></i>
                             <span class="nav-link-text ms-1">Dokumen</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('resident-migration.*') ? 'active' : '' }}" href="{{ route('resident-migration.index') }}">
+                        <a class="nav-link {{ Route::is('resident-migration.*') ? 'active' : '' }}" href="{{ route('resident-migration.index') }}">
                             <i class="fas fa-check"></i>
                             <span class="nav-link-text ms-1">Mutasi</span>
                         </a>
@@ -75,19 +75,19 @@
                 <!-- Navigation -->
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile') }}">
+                        <a class="nav-link {{ Route::is('profile.*') ? 'active' : '' }}" href="{{ route('profile') }}">
                             <i class="fas fa-users"></i>
                             <span class="nav-link-text ms-1">Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
+                        <a class="nav-link {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
                             <i class="fas fa-cog"></i>
                             <span class="nav-link-text ms-1">Settings</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}"
+                        <a class="nav-link "href="{{ route('logout') }}"
 							onclick="event.preventDefault();
 							  document.getElementById('logout-form').submit();">
 						<i class="fas fa-arrow-left"></i>
