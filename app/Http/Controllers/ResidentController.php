@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Resident;
 use App\Models\Neighborhood;
 use App\Models\CommunityUnit;
-use App\Models\Kelurahan;
+use App\Models\SubDistrict;
 use Illuminate\Http\Request;
 
 class ResidentController extends Controller
 {
     public function index()
     {
-        
         $residents = Resident::all();
         return view('admin.resident.index', compact('residents'));
     }
@@ -21,29 +20,26 @@ class ResidentController extends Controller
     {
         $neighborhoods = Neighborhood::all();
         $communityUnits = CommunityUnit::all();
-        $kelurahans = Kelurahan::all();
+        $kelurahans = SubDistrict::all();
         return view('admin.resident.create', compact('neighborhoods', 'communityUnits', 'kelurahans'));
-    
     }
 
-    public function store(Request $request){
-
-    
-    $request->validate([
-        'nik' => 'required|unique:residents,nik', 
-        'name' => 'required',
-        'pob' => 'required',
-        'dob' => 'required|date',
-        'gender' => 'required|in:male,female',
-        'religion' => 'required|in:islam,kristen,hindu,buddha',
-        'last_education' => 'required|in:sd,smp,sma,diploma,sarjana',
-        'citizenship' => 'required|in:wna,wni',
-        'marital_status' => 'required|in:married,single',
-        'kelurahan_id' => 'required|exists:kelurahans,id',
-        'neighborhood_id' => 'required|exists:neighborhoods,id',
-        'community_unit_id' => 'required|exists:community_units,id',
-    ]);
-
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nik' => 'required|unique:residents,nik', 
+            'name' => 'required',
+            'pob' => 'required',
+            'dob' => 'required|date',
+            'gender' => 'required|in:male,female',
+            'religion' => 'required|in:islam,kristen,hindu,buddha',
+            'last_education' => 'required|in:sd,smp,sma,diploma,sarjana',
+            'citizenship' => 'required|in:wna,wni',
+            'marital_status' => 'required|in:married,single',
+            'kelurahan_id' => 'required|exists:sub_districts,id',
+            'neighborhood_id' => 'required|exists:neighborhoods,id',
+            'community_unit_id' => 'required|exists:community_units,id',
+        ]);
 
         Resident::create($request->all());
 
@@ -62,9 +58,9 @@ class ResidentController extends Controller
         $resident = Resident::findOrFail($id);
         $neighborhoods = Neighborhood::all();
         $communityUnits = CommunityUnit::all();
-        $kelurahans = Kelurahan::all();
+        $kelurahans = SubDistrict::all();
         return view('admin.resident.edit', compact('resident', 'neighborhoods', 'communityUnits', 'kelurahans'));
-        }
+    }
 
     public function update(Request $request, $id)
     {
@@ -80,7 +76,7 @@ class ResidentController extends Controller
             'last_education' => 'required|in:sd,smp,sma,diploma,sarjana',
             'citizenship' => 'required|in:wna,wni',
             'marital_status' => 'required|in:married,single',
-            'kelurahan_id' => 'required|exists:kelurahans,id',
+            'kelurahan_id' => 'required|exists:sub_districts,id',
             'neighborhood_id' => 'required|exists:neighborhoods,id',
             'community_unit_id' => 'required|exists:community_units,id',
         ]);  

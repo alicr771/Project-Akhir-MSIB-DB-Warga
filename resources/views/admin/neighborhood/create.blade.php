@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Penduduk RT')
+@section('title', 'Tambah RT')
 
 @section('content')
   <div class="bg-body-tertiary col-md-6 container mx-0 rounded p-4 shadow">
@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex gap-3">
         <a class="btn btn-secondary flex-grow-1" href="{{ route('neighborhood.index') }}">Kembali</a>
-        <button class="btn btn-dark flex-grow-1" type="submit">Tambah penduduk</button>
+        <button class="btn btn-dark flex-grow-1" type="submit">Submit</button>
       </div>
     </form>
   </div>

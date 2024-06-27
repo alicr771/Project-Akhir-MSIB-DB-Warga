@@ -21,9 +21,9 @@ class CreateResidentsTable extends Migration
             $table->enum('last_education', ['sd', 'smp', 'sma', 'diploma', 'sarjana']);
             $table->enum('citizenship', ['wna', 'wni']);
             $table->enum('marital_status', ['married', 'single']);
-            $table->foreignId('kelurahan_id')->constrained('kelurahans');
-            $table->foreignId('neighborhood_id')->constrained('neighborhoods');
-            $table->foreignId('community_unit_id')->constrained('community_units');
+            $table->foreignId('kelurahan_id')->nullable();
+            $table->foreignId('neighborhood_id')->nullable();
+            $table->foreignId('community_unit_id')->nullable();
             $table->timestamps();
         });
     }

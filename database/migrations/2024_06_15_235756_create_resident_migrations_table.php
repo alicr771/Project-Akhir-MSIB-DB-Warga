@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resident_migrations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resident_id')->constrained()->onDelete('cascade');
+            $table->foreignId('resident_id');
             $table->date('date');
             $table->string('from');
             $table->string('to');

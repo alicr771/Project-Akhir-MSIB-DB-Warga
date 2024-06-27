@@ -36,8 +36,8 @@ class ResidentMigrationController extends Controller
         $request->validate([
             'resident_id' => 'required|integer',
             'date' => 'required|date',
-            'from' => 'required|string|max:255',
-            'to' => 'required|string|max:255',
+            'from' => 'required|string',
+            'to' => 'required|string',
             'cause' => 'required|string',
             'status' => 'required|string',
         ]);

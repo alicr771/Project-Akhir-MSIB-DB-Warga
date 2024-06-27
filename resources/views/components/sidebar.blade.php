@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('user.index') ? 'active' : '' }}" href="{{ route('user.index') }}">
+                        <a class="nav-link {{ Route::is('family.index') ? 'active' : '' }}" href="{{ route('family.index') }}">
                             <i class="fas fa-home"></i>
                             <span class="nav-link-text ms-1">Keluarga</span>
                         </a>
@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
+                        <a class="nav-link mb-2 {{ Route::is('generals.*') ? 'active' : '' }}" href="{{ route('generals.index') }}">
                             <i class="fas fa-cog"></i>
                             <span class="nav-link-text ms-1">Settings</span>
                         </a>

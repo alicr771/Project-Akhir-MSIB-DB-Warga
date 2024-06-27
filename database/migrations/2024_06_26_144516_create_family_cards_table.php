@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('family_card_details', function (Blueprint $table) {
+        Schema::create('family_cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('family_card_id')->nullable();
-            $table->foreignId('resident_id')->nullable();
-            $table->enum('status', ['Family Head', 'Family Member']);
+
+            $table->foreignId('resident_id');
+            $table->string('number');
+
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('family_card_details');
+        Schema::dropIfExists('family_cards');
     }
 };

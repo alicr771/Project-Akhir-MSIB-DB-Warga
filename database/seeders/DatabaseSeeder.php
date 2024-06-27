@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-            ResidentSeeder::class,
-            // ResidentMigrationSeeder::class,
-            DocumentSeeder::class,
             GeneralSeeder::class,
+            NeighborhoodSeeder::class,
+            CommunityUnitSeeder::class,
+            SubDistrictSeeder::class,
         ]);
     }
 }

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kelurahan;
+use App\Models\SubDistrict;
 
 class KelurahanController extends Controller
 {
     public function index()
     {
-        $kelurahans = Kelurahan::all();
-        return view('kelurahan.index', compact('kelurahans'));
+        $subDistricts = SubDistrict::all();
+        return view('kelurahan.index', compact('subDistricts'));
     }
 
     public function create()
@@ -26,21 +26,21 @@ class KelurahanController extends Controller
             
         ]);
 
-        Kelurahan::create($request->all());
+        SubDistrict::create($request->all());
         return redirect()->route('kelurahan.index');
     }
 
-    public function show(Kelurahan $kelurahan)
+    public function show(SubDistrict $subDistrict)
     {
-        return view('kelurahan.show', compact('kelurahan'));
+        return view('kelurahan.show', compact('subDistrict'));
     }
 
-    public function edit(Kelurahan $kelurahan)
+    public function edit(SubDistrict $subDistrict)
     {
-        return view('kelurahan.edit', compact('kelurahan'));
+        return view('kelurahan.edit', compact('subDistrict'));
     }
 
-    public function update(Request $request, Kelurahan $kelurahan)
+    public function update(Request $request, SubDistrict $subDistrict)
     {
         $request->validate([
             'name' => 'required',
@@ -48,13 +48,13 @@ class KelurahanController extends Controller
             
         ]);
 
-        $kelurahan->update($request->all());
+        $subDistrict->update($request->all());
         return redirect()->route('kelurahan.index');
     }
 
-    public function destroy(Kelurahan $kelurahan)
+    public function destroy(SubDistrict $subDistrict)
     {
-        $kelurahan->delete();
+        $subDistrict->delete();
         return redirect()->route('kelurahan.index');
     }
 }

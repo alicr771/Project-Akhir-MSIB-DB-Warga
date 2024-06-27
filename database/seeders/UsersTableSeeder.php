@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 1,
                 'remember_token' => Str::random(10),
-                'no_hp' => '1234567890',
+                'phone' => '1234567890',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'role' => 0,
                 'remember_token' => Str::random(10),
-                'no_hp' => '1234567890',
+                'phone' => '1234567890',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

@@ -9,7 +9,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $settings = Setting::all();
+        $settings = Setting::first();
         return view('admin.settings.index', compact('settings'));
     }
 

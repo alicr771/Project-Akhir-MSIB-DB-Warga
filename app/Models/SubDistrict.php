@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SubDistrict extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'head'
-    ];
+    protected $fillable = ['name','head'];
 
-    public function residents(): HasMany
+    public function residents()
     {
         return $this->hasMany(Resident::class);
     }

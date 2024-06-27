@@ -4,24 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class FamilyCard extends Model
 {
     use HasFactory;
 
+    protected $table = 'family_cards';
+    
     protected $fillable = [
-        'no_kk'
+        'resident_id',
+        'number'
     ];
 
-    public function resident(): BelongsTo
+    public function resident()
     {
-        return $this->belongsTo(Resident::class);
+        return $this->belongsTo(Resident::class, 'resident_id', 'id');
     }
 
-    public function familyCardDetail(): HasOne
+    public function detail()
     {
-        return $this->hasOne(FamilyCardDetail::class);
+        return $this->hasMany(FamilyCardDetail::class, 'family_card_id', 'id');
     }
 }

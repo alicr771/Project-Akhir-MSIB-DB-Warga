@@ -9,9 +9,18 @@ class Resident extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nik', 'name', 'pob', 'dob', 'gender', 'religion',
-        'last_education', 'citizenship', 'marital_status',
-        'kelurahan_id', 'neighborhood_id', 'community_unit_id'
+        'nik',
+        'name',
+        'pob',
+        'dob',
+        'gender',
+        'religion',
+        'last_education',
+        'citizenship',
+        'marital_status',
+        'kelurahan_id',
+        'neighborhood_id',
+        'community_unit_id',
     ];
 
     public function neighborhood()
@@ -27,5 +36,10 @@ class Resident extends Model
     public function kelurahan()
     {
         return $this->belongsTo(Kelurahan::class);
+    }
+
+    public function family()
+    {
+        return $this->hasOne(FamilyCard::class);
     }
 }

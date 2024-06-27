@@ -10,13 +10,12 @@ use App\Http\Controllers\ResidentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NeighborhoodController;
 use App\Http\Controllers\CommunityUnitController;
-use App\Http\Controllers\ManajemenPendudukController;
 use App\Http\Controllers\ResidentMigrationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\ManagementKeluargaController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\FamilyCardController;
+use App\Http\Controllers\FamilyCardDetailController;
 use App\Http\Controllers\KelurahanController;
-use App\Http\Controllers\ManagementKelurahanController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -24,13 +23,6 @@ Route::get('/', function () {
 
 Route::view('/blank', 'blank')->name('blank');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('management-kelurahan', [ManagementKelurahanController::class, 'index']);
-Route::get('delete-management-kelurahan/{id}', [ManagementKelurahanController::class, 'delete']);
-Route::post('insert-management-kelurahan', [ManagementKelurahanController::class, 'insert']);
-Route::get('update-management-kelurahan', [ManagementKelurahanController::class, 'index']);
-
-Route::get('management-keluarga', [ManagementKeluargaController::class, 'index']);
 // Login
 Route::get('/login', [LoginController::class, 'login'])->name('login'); 
 Route::post('/login', [LoginController::class, 'login_proses'])->name('login_proses');
@@ -57,36 +49,27 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('admin/dashboard', [HomeController::class, 'index']);
+    Route::get('admin/dashboard', [HomeController::class, 'index'])->name('home');
     Route::resource('admin/user', UserController::class);
     Route::resource('admin/resident', ResidentController::class);
-    Route::post('/admin/residents/store', [ResidentController::class, 'store'])->name('admin.resident.store');
     Route::resource('admin/resident-migration', ResidentMigrationController::class);
     Route::resource('admin/neighborhood', NeighborhoodController::class);
     Route::resource('admin/community-unit', CommunityUnitController::class);
+    Route::resource('admin/kelurahan', KelurahanController::class);
+    Route::resource('admin/family', FamilyCardController::class);
+    Route::resource('admin/family/detail', FamilyCardDetailController::class);
     Route::resource('admin/document', DocumentController::class);
     Route::resource('admin/generals', GeneralController::class);
     Route::resource('admin/settings', SettingController::class); 
 });
 
-
 Route::group(['middleware' => 'user'], function () {
-    Route::get('user/dashboard', [HomeController::class, 'index']);
+    Route::get('user/dashboard', [HomeController::class, 'index'])->name('home');
     Route::get('user/generals', [GeneralController::class, 'general']);
 });
 
-Route::resource('kelurahan', KelurahanController::class);
-
 Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
 
 Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
-Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
-
-Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
-Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');
-
 Route::view('/forgot-password', 'auth.forgot-password')->name('forgot.password');
 Route::view('/reset-password', 'auth.reset-password')->name('reset.password');
-Route::get('/tampilpenduduk', [ManajemenPendudukController::class, 'index'])->name('tampilpenduduk');
-Route::get('/penduduk/create', [ManajemenPendudukController::class, 'create'])->name('penduduk.create');
-Route::post('/penduduk', [ManajemenPendudukController::class, 'store'])->name('penduduk.store');

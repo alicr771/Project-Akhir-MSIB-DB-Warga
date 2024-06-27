@@ -47,7 +47,7 @@ class UserController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'no_hp' => $request->no_hp,
+            'phone' => $request->no_hp,
             'password' => Hash::make($request->password),
             'role' => $request->role,
             'remember_token' => Str::random(60),
@@ -85,7 +85,7 @@ class UserController extends Controller
         $userData = [
             'name' => $request->name,
             'email' => $request->email,
-            'no_hp' => $request->no_hp,
+            'phone' => $request->no_hp,
             'role' => $request->role,
 
         ];
@@ -161,7 +161,7 @@ class UserController extends Controller
             $userData['password'] = Hash::make($request->password);
         }
 
-        $user->update($userData);
+        User::find($user->id)->update($userData);
 
         return redirect()->route('profile')->with('success', 'Profile berhasil diperbarui');
     }
@@ -193,7 +193,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $user->password = Hash::make($request->password);
-        $user->save();
+        User::find($user->id)->save();
 
         return redirect()->route('profile')->with('success', 'Password berhasil diperbarui');
     }

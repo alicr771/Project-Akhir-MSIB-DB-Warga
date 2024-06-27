@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('no_hp')->nullable()->after('role');
+        Schema::create('family_card_details', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('family_card_id');
+            $table->foreignId('resident_id');
+            $table->enum('status', ['ayah', 'ibu', 'anak']);
+
+            $table->timestamps();
         });
     }
 
@@ -21,8 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('no_hp');
-        });
+        Schema::dropIfExists('family_card_details');
     }
 };
