@@ -30,17 +30,19 @@ class KelurahanController extends Controller
         return redirect()->route('kelurahan.index');
     }
 
-    public function show(SubDistrict $subDistrict)
+    public function show(string $id)
     {
+        $subDistrict = SubDistrict::find($id);
         return view('kelurahan.show', compact('subDistrict'));
     }
 
-    public function edit(SubDistrict $subDistrict)
+    public function edit(string $id)
     {
+        $subDistrict = SubDistrict::find($id);
         return view('kelurahan.edit', compact('subDistrict'));
     }
 
-    public function update(Request $request, SubDistrict $subDistrict)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'name' => 'required',
@@ -48,13 +50,13 @@ class KelurahanController extends Controller
             
         ]);
 
-        $subDistrict->update($request->all());
+        SubDistrict::find($id)->update($request->all());
         return redirect()->route('kelurahan.index');
     }
 
-    public function destroy(SubDistrict $subDistrict)
+    public function destroy(string $id)
     {
-        $subDistrict->delete();
+        SubDistrict::find($id)->delete();
         return redirect()->route('kelurahan.index');
     }
 }

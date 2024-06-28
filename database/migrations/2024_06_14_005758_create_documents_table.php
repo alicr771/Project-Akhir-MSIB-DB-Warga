@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('resident_id');
             $table->string('type');
-            $table->string('number');
             $table->string('path');
-            $table->date('issued_date');
-            $table->date('expiration_date');
-            $table->string('notes');
+            $table->date('issued_date')->nullable();
+            $table->date('expiration_date')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ class Document extends Model
 
     protected $fillable = [
         'type',
-        'number',
+        'resident_id',
         'path',
         'issued_date',
         'expiration_date',

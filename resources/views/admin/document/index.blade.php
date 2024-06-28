@@ -23,7 +23,7 @@
                                             Type
                                         </th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">
-                                            Number
+                                            Data Milik
                                         </th>
                                         <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">
                                             Path
@@ -49,10 +49,10 @@
 												{{ $item->type }}
 											</td>
 											<td class="text-sm">
-												{{ $item->number }}
+												{{ $item->resident->name }}
 											</td>
 											<td class="text-sm">
-												{{ $item->path }}
+												<img src="{{ asset($item->path) }}" height="100">
 											</td>
 											<td class="text-sm">
 												{{ $item->issued_date }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\Resident;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -22,7 +23,8 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        return view('admin.document.create');
+        $residents = Resident::get();
+        return view('admin.document.create', compact('residents'));
     }
 
     /**
@@ -30,17 +32,33 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        $request -> validate([
+        // dd($request);
+        $data = $request->validate([
             'type' => 'required',
-            'number' => 'required',
-            'path' => 'required',
-            'issued_date' => 'required',
-            'expiration_date' => 'required',
-            'notes' => 'required',
+            'resident_id' => 'required|exists:residents,id',
+            'file' => 'required|mimes:png,jpg,jpeg,pdf,webp|max:2048',
+            'issued_date' => 'nullable|date',
+            'expiration_date' => 'nullable|date',
+            'notes' => 'nullable',
         ]);
-        Document::create($request->all());
 
-        return redirect()->back()->with('suc_message', 'Data Berhasil disimpan!');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filepath = 'storage/' . $file->store('documents', 'public');
+            
+            $data['file'] = url($filepath);
+        }
+
+        Document::create([
+            'type' => $data['type'],
+            'resident_id' => $data['resident_id'],
+            'path' => $data['file'],
+            'issued_date' => $data['issued_date'],
+            'expiration_date' => $data['expiration_date'],
+            'notes' => $data['notes'],
+        ]);
+
+        return redirect()->route('document.index')->with('suc_message', 'Data Berhasil disimpan!');
     }
 
     /**
