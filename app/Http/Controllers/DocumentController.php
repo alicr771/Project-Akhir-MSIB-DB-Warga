@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Models\Resident;
+use Doctrine\DBAL\Schema\View;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -32,7 +33,6 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $data = $request->validate([
             'type' => 'required',
             'resident_id' => 'required|exists:residents,id',
@@ -73,35 +73,47 @@ class DocumentController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Document $document)
-    {
-        return view('admin.document.edit', compact('document'));
-    }
+{
+    $residents = Resident::all();
+    return view('admin.document.edit', compact('document', 'residents'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Document $document)
     {
-        $id = $request->id;
-        $data = [
-            'type' => $request->type,
-            'number' => $request->number,
-            'path' => $request->path,
-            'issued_date' => $request->issued_date,
-            'expiration_date' => $request->expiration_date,
-            'notes' => $request->notes,
-        ];
+        $data = $request->validate([
+            'type' => 'required',
+            'resident_id' => 'required|exists:residents,id',
+            'file' => 'nullable|mimes:png,jpg,jpeg,pdf,webp|max:2048',
+            'issued_date' => 'nullable|date',
+            'expiration_date' => 'nullable|date',
+            'notes' => 'nullable',
+        ]);
 
-        Document::where('id', $id)->update($data);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filepath = 'storage/' . $file->store('documents', 'public');
+            $data['path'] = url($filepath);
+        } else {
+            unset($data['file']);
+        }
 
-        return redirect()->back()->with('suc_message', 'Data Berhasil disimpan!');
+        $document->update($data);
+
+        return redirect()->route('document.index')->with('suc_message', 'Data Berhasil diperbarui!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Document $document)
     {
-        Document::where('id', $id)->delete();
+        $document->delete();
+
+        return redirect()->route('document.index')->with('suc_message', 'Data Berhasil dihapus!');
     }
 }

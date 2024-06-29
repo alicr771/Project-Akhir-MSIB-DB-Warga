@@ -14,7 +14,7 @@
                             <strong>Nama Kelurahan</strong>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ $subDistrict->name }}</p>
+                            <p>{{ $kelurahan->name }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -22,7 +22,7 @@
                             <strong>Nama Lurah</strong>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ $subDistrict->head }}</p>
+                            <p>{{ $kelurahan->head }}</p>
                         </div>
                     </div>
                     

@@ -23,40 +23,36 @@ class KelurahanController extends Controller
         $request->validate([
             'name' => 'required',
             'head' => 'required',
-            
         ]);
 
         SubDistrict::create($request->all());
         return redirect()->route('kelurahan.index');
     }
 
-    public function show(string $id)
+    public function show(SubDistrict $kelurahan)
     {
-        $subDistrict = SubDistrict::find($id);
-        return view('kelurahan.show', compact('subDistrict'));
+        return view('kelurahan.show', compact('kelurahan'));
     }
 
-    public function edit(string $id)
+    public function edit(SubDistrict $kelurahan)
     {
-        $subDistrict = SubDistrict::find($id);
-        return view('kelurahan.edit', compact('subDistrict'));
+        return view('kelurahan.edit', compact('kelurahan'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, SubDistrict $kelurahan)
     {
         $request->validate([
             'name' => 'required',
             'head' => 'required',
-            
         ]);
 
-        SubDistrict::find($id)->update($request->all());
+        $kelurahan->update($request->all());
         return redirect()->route('kelurahan.index');
     }
 
-    public function destroy(string $id)
+    public function destroy(SubDistrict $kelurahan)
     {
-        SubDistrict::find($id)->delete();
+        $kelurahan->delete();
         return redirect()->route('kelurahan.index');
     }
 }

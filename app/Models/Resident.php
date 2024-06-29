@@ -35,7 +35,7 @@ class Resident extends Model
 
     public function kelurahan()
     {
-        return $this->belongsTo(Kelurahan::class);
+        return $this->belongsTo(SubDistrict::class);
     }
 
     public function family()

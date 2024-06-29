@@ -50,12 +50,10 @@
 													Edit
 												</a>
 												<form action="{{ route('kelurahan.destroy', $item->id) }}" method="POST" class="d-inline">
-													@csrf
-													@method('DELETE')
-													<button type="submit" class="badge badge-danger border-0 btn btn-sm text-uppercase rounded-pill" style="font-size: 0.54rem; padding: 0.37rem .4rem;">
-														Delete
-													</button>
-												</form>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="badge badge-danger border-0 btn btn-sm text-uppercase rounded-pill" style="font-size: 0.54rem; padding: 0.37rem .4rem;">Delete</button>
+                                                </form>
 											</td>
                                         </tr>
                                     @endforeach
